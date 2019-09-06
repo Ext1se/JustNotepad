@@ -18,6 +18,9 @@ import com.ext1se.notepad.common.BaseFragmentWithOptionsMenu
 import com.ext1se.notepad.data.ProjectRepository
 import com.ext1se.notepad.data.model.Project
 import com.ext1se.notepad.databinding.ProjectBinding
+import com.ext1se.notepad.di.DI
+import com.ext1se.notepad.di.models.FavoriteProjectsModule
+import com.ext1se.notepad.di.models.ProjectModule
 import com.ext1se.notepad.ui.ThemeState
 import com.ext1se.notepad.ui.projects.favorite.FavoriteProjectsFragment
 import com.ext1se.notepad.utils.CustomFactoryProject
@@ -28,12 +31,10 @@ import javax.inject.Inject
 class ProjectFragment : BaseFragmentWithOptionsMenu(), IconDialog.Callback, ColorDialog.Callback {
 
     @Inject
-    lateinit var projectRepository: ProjectRepository
+    lateinit var projectViewModel: ProjectViewModel
 
-    private var selectedProject: Project? = null
-
-    private lateinit var projectViewModel: ProjectViewModel
     private lateinit var binding: ProjectBinding
+    private var selectedProject: Project? = null
 
     companion object {
         const val KEY_PROJECT = "KEY_PROJECT"
@@ -43,12 +44,6 @@ class ProjectFragment : BaseFragmentWithOptionsMenu(), IconDialog.Callback, Colo
                 KEY_PROJECT to project
             )
         }
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        val factory = CustomFactoryProject()
-        projectViewModel = ViewModelProviders.of(this, factory).get(ProjectViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -127,6 +122,7 @@ class ProjectFragment : BaseFragmentWithOptionsMenu(), IconDialog.Callback, Colo
             dataObserver.updateProject(newProject)
             selectedProject = null
         }
+        projectViewModel.project.value = null
         activityObserver.updateFragment(FavoriteProjectsFragment.newInstance(), true, false)
     }
 
@@ -156,10 +152,12 @@ class ProjectFragment : BaseFragmentWithOptionsMenu(), IconDialog.Callback, Colo
     }
 
     override fun inject() {
-        Toothpick.inject(this, App.appScope)
+        val scope = Toothpick.openScopes(DI.APP_SCOPE, DI.PROJECT_SCOPE)
+        scope.installModules(ProjectModule(this))
+        Toothpick.inject(this, scope)
     }
 
     override fun close() {
-        Toothpick.closeScope(App.appScope)
+        Toothpick.closeScope(DI.PROJECT_SCOPE)
     }
 }

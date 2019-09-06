@@ -15,6 +15,9 @@ import com.ext1se.notepad.data.TaskRepository
 import com.ext1se.notepad.data.model.Project
 import com.ext1se.notepad.data.model.Task
 import com.ext1se.notepad.databinding.TaskBinding
+import com.ext1se.notepad.di.DI
+import com.ext1se.notepad.di.models.FavoriteProjectsModule
+import com.ext1se.notepad.di.models.TaskModule
 import com.ext1se.notepad.ui.projects.favorite.FavoriteProjectsFragment
 import com.ext1se.notepad.ui.projects.dialog.ProjectDialog
 import com.ext1se.notepad.utils.CustomFactoryTask
@@ -26,11 +29,11 @@ class TaskFragment : BaseFragmentWithOptionsMenu(), ProjectDialog.Callback {
 
     @Inject
     lateinit var taskRepository: TaskRepository
+    @Inject
+    lateinit var taskViewModel: TaskViewModel
 
-    private var selectedTask: Task? = null
-
-    private lateinit var taskViewModel: TaskViewModel
     private lateinit var binding: TaskBinding
+    private var selectedTask: Task? = null
 
     companion object {
         const val KEY_TASK = "KEY_PROJECT"
@@ -40,12 +43,6 @@ class TaskFragment : BaseFragmentWithOptionsMenu(), ProjectDialog.Callback {
                 KEY_TASK to task
             )
         }
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        val factory = CustomFactoryTask()
-        taskViewModel = ViewModelProviders.of(this, factory).get(TaskViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,9 +57,7 @@ class TaskFragment : BaseFragmentWithOptionsMenu(), ProjectDialog.Callback {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = TaskBinding.inflate(inflater, container, false)
         taskViewModel.setProject(dataObserver.getSelectedProject())
-        selectedTask?.let {
-            taskViewModel.setTask(it)
-        }
+        taskViewModel.setTask(selectedTask)
         binding.vm = taskViewModel
         binding.executePendingBindings()
         binding.lifecycleOwner = this
@@ -104,8 +99,8 @@ class TaskFragment : BaseFragmentWithOptionsMenu(), ProjectDialog.Callback {
             taskRepository.updateObject(task)
             selectedTask = null
         }
+        //activity?.onBackPressed()
         activityObserver.updateFragment(FavoriteProjectsFragment.newInstance(), true, false)
-
     }
 
     override fun onProjectSelected(projectDialog: ProjectDialog, project: Project) {
@@ -126,10 +121,12 @@ class TaskFragment : BaseFragmentWithOptionsMenu(), ProjectDialog.Callback {
     }
 
     override fun inject() {
-        Toothpick.inject(this, App.appScope)
+        val scope = Toothpick.openScopes(DI.APP_SCOPE, DI.TASK_SCOPE)
+        scope.installModules(TaskModule(this))
+        Toothpick.inject(this, scope)
     }
 
     override fun close() {
-        Toothpick.closeScope(App.appScope)
+        Toothpick.closeScope(DI.TASK_SCOPE)
     }
 }

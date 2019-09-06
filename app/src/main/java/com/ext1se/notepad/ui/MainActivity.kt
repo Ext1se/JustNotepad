@@ -22,7 +22,10 @@ import com.ext1se.notepad.data.ProjectRepository
 import com.ext1se.notepad.data.model.Project
 import com.ext1se.notepad.databinding.DrawerHeaderBinding
 import com.ext1se.notepad.databinding.ProjectsBinding
+import com.ext1se.notepad.di.DI
 import com.ext1se.notepad.di.models.AppModule
+import com.ext1se.notepad.di.models.FavoriteProjectsModule
+import com.ext1se.notepad.di.models.ProjectsModule
 import com.ext1se.notepad.preferences.SharedPreferencesHelper
 import com.ext1se.notepad.ui.projects.favorite.FavoriteProjectsFragment
 import com.ext1se.notepad.ui.projects.ProjectAdapter
@@ -47,8 +50,9 @@ class MainActivity : BaseActivity(),
     lateinit var projectRepository: ProjectRepository
     @field:[Inject Named(AppModule.PREFERENCES_HELPER)]
     lateinit var preferencesHelper: SharedPreferencesHelper
+    @Inject
+    lateinit var projectsViewModel: ProjectsViewModel
 
-    private lateinit var projectsViewModel: ProjectsViewModel
     private lateinit var binding: ProjectsBinding
     private lateinit var headerBinding: DrawerHeaderBinding
 
@@ -302,11 +306,13 @@ class MainActivity : BaseActivity(),
     }
 
     override fun inject() {
-        Toothpick.inject(this, App.appScope)
+        val scope = Toothpick.openScopes(DI.APP_SCOPE, DI.PROJECT_SCOPE)
+        scope.installModules(ProjectsModule(this))
+        Toothpick.inject(this, scope)
     }
 
     override fun close() {
-        Toothpick.closeScope(App.appScope)
+        Toothpick.closeScope(DI.PROJECTS_SCOPE)
     }
 
     override fun onBackPressed() {

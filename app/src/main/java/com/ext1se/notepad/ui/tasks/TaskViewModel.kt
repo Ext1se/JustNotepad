@@ -16,11 +16,15 @@ class TaskViewModel : ViewModel() {
         task.value = Task()
     }
 
-    fun setTask(task: Task){
-        this.task.value = task
+    fun setTask(task: Task?) {
+        if (task != null) {
+            this.task.value = task
+        } else {
+            this.task.value = Task()
+        }
     }
 
-    fun setProject(project: Project){
+    fun setProject(project: Project) {
         selectedProject.value = project
         idColorTheme.value = project.idColorTheme
     }

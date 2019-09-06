@@ -13,6 +13,9 @@ import com.ext1se.notepad.data.ProjectRepository
 import com.ext1se.notepad.data.TaskRepository
 import com.ext1se.notepad.data.model.Task
 import com.ext1se.notepad.databinding.RemovedTasksBinding
+import com.ext1se.notepad.di.DI
+import com.ext1se.notepad.di.models.FavoriteProjectsModule
+import com.ext1se.notepad.di.models.RemovedTasksModule
 import com.ext1se.notepad.ui.ThemeState
 import com.ext1se.notepad.utils.CustomFactoryRemovedTasks
 import toothpick.Toothpick
@@ -22,21 +25,14 @@ class RemovedTasksFragment : BaseFragment(),
     RemovedTasksAdapter.OnTaskListener {
 
     @Inject
-    lateinit var projectRepository: ProjectRepository
-    @Inject
     lateinit var taskRepository: TaskRepository
+    @Inject
+    lateinit var removedTasksViewModel: RemovedTasksViewModel
 
-    private lateinit var removedTasksViewModel: RemovedTasksViewModel
     private lateinit var binding: RemovedTasksBinding
 
     companion object {
         fun newInstance() = RemovedTasksFragment()
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        val factory = CustomFactoryRemovedTasks(projectRepository, taskRepository, this)
-        removedTasksViewModel = ViewModelProviders.of(this, factory).get(RemovedTasksViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -65,10 +61,12 @@ class RemovedTasksFragment : BaseFragment(),
     }
 
     override fun inject() {
-        Toothpick.inject(this, App.appScope)
+        val scope = Toothpick.openScopes(DI.APP_SCOPE, DI.REMOVED_TASKS_SCOPE)
+        scope.installModules(RemovedTasksModule(this))
+        Toothpick.inject(this, scope)
     }
 
     override fun close() {
-        Toothpick.closeScope(App.appScope)
+        Toothpick.closeScope(DI.REMOVED_TASKS_SCOPE)
     }
 }

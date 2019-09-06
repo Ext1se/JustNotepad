@@ -15,6 +15,9 @@ import com.ext1se.notepad.data.ProjectRepository
 import com.ext1se.notepad.data.TaskRepository
 import com.ext1se.notepad.data.model.Project
 import com.ext1se.notepad.databinding.ManagerProjectsBinding
+import com.ext1se.notepad.di.DI
+import com.ext1se.notepad.di.models.FavoriteProjectsModule
+import com.ext1se.notepad.di.models.ManagerProjectsModule
 import com.ext1se.notepad.ui.ThemeState
 import com.ext1se.notepad.ui.projects.ProjectFragment
 import com.ext1se.notepad.ui.projects.favorite.FavoriteProjectsFragment
@@ -26,19 +29,12 @@ class ManagerProjectsFragment : BaseFragmentWithOptionsMenu(),
     @Inject
     lateinit var projectRepository: ProjectRepository
     @Inject
-    lateinit var taskRepository: TaskRepository
+    lateinit var projectsViewModel: ManagerProjectsViewModel
 
-    private lateinit var projectsViewModel: ManagerProjectsViewModel
     private lateinit var binding: ManagerProjectsBinding
 
     companion object {
         fun newInstance() = ManagerProjectsFragment()
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        val factory = CustomFactoryManagerProjects(projectRepository, this)
-        projectsViewModel = ViewModelProviders.of(this, factory).get(ManagerProjectsViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -114,10 +110,12 @@ class ManagerProjectsFragment : BaseFragmentWithOptionsMenu(),
     }
 
     override fun inject() {
-        Toothpick.inject(this, App.appScope)
+        val scope = Toothpick.openScopes(DI.APP_SCOPE, DI.MANAGER_PROJECTS_SCOPE)
+        scope.installModules(ManagerProjectsModule(this))
+        Toothpick.inject(this, scope)
     }
 
     override fun close() {
-        Toothpick.closeScope(App.appScope)
+        Toothpick.closeScope(DI.MANAGER_PROJECTS_SCOPE)
     }
 }
