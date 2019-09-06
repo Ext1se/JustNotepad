@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="DialogStyle" format="reference"/>
+    <declare-styleable name="BaseDialog">
+        <attr name="backgroundColor" format="color|reference"/>
+        <attr name="maxWidth" format="dimension|reference"/>
+        <attr name="maxHeight" format="dimension|reference"/>
+        <attr name="previewSize" format="dimension|reference"/>
+        <attr name="offsetContent" format="dimension|reference"/>
+        <attr name="buttonSize" format="dimension|reference"/>
+        <attr name="offsetButton" format="dimension|reference"/>
+        <attr name="itemDialogStyle" format="reference"/>
+        <attr name="buttonDialogStyle" format="reference"/>
+        <attr name="titleDialogStyle" format="reference"/>
+        <attr name="listDialogStyle" format="reference"/>
+        <attr name="buttonDialogTextSelect" format="string|reference"/>
+        <attr name="buttonDialogTextCancel" format="string|reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="IconDialog">
+        <attr name="iconSize" format="dimension|reference"/>
+        <attr name="iconColor" format="color|reference"/>
+        <attr name="selectedIconColor" format="color|reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="ColorDialog">
+        <attr name="colorSize" format="dimension|reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="IconView">
+        <attr name="idIcon" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="CircleIconView">
+        <attr name="color" format="color|reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="ColorView">
+        <attr name="colorPrimary" format="color|reference"/>
+        <attr name="colorPrimaryDark" format="color|reference"/>
+        <attr name="selected" format="boolean"/>
+    </declare-styleable>
+</resources>

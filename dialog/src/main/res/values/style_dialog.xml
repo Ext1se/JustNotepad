@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <public name="BaseDialogStyle" type="style"/>
+    <style name="BaseDialogStyle">
+        <item name="backgroundColor">?attr/colorBackgroundFloating</item>
+        <item name="maxWidth">400dp</item>
+        <item name="maxHeight">500dp</item>
+        <item name="colorSize">60dp</item>
+        <item name="previewSize">72dp</item>
+        <item name="offsetContent">36dp</item>
+        <item name="buttonSize">56dp</item>
+        <item name="offsetButton">28dp</item>
+        <item name="itemDialogStyle">@style/ItemDialogStyle</item>
+        <item name="buttonDialogStyle">@style/ButtonDialogStyle</item>
+        <item name="titleDialogStyle">@style/TitleDialogStyle</item>
+        <item name="listDialogStyle">@style/ListDialogStyle</item>
+        <item name="buttonDialogTextSelect">@string/dialog_action_select</item>
+        <item name="buttonDialogTextCancel">@string/dialog_action_cancel</item>
+    </style>
+
+    <public name="IconDialogStyle" type="style"/>
+    <style name="IconDialogStyle" parent="BaseDialogStyle">
+        <item name="iconSize">54dp</item>
+        <item name="iconColor">@color/colorIcon</item>
+        <item name="selectedIconColor">@color/colorSelectedIcon</item>
+    </style>
+
+    <public name="ColorDialogStyle" type="style"/>
+    <style name="ColorDialogStyle" parent="BaseDialogStyle">
+        <item name="colorSize">58dp</item>
+    </style>
+
+    <public name="ItemDialogStyle" type="style"/>
+    <style name="ItemDialogStyle">
+        <item name="android:padding">8dp</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+    </style>
+
+    <public name="ButtonDialogStyle" type="style"/>
+    <style name="ButtonDialogStyle">
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <public name="TitleDialogStyle" type="style"/>
+    <style name="TitleDialogStyle">
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:minLines">1</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:text">@string/dialog_icon</item>
+    </style>
+
+    <public name="ListDialogStyle" type="style"/>
+    <style name="ListDialogStyle">
+        <item name="android:padding">4dp</item>
+        <item name="android:clipToPadding">false</item>
+    </style>
+</resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/greyPrimary</color>
+    <color name="colorPrimaryDark">@color/greyDark</color>
+    <color name="colorAccent">@color/greyDark</color>
+
+    <color name="colorDefaultPrimary">@color/blackPrimary</color>
+    <color name="colorDefaultPrimaryDark">@color/blackDark</color>
+
+    <color name="colorBold">#505050</color>
+    <color name="colorDefault">#777</color>
+    <color name="colorDisabled">#bbb</color>
+    <color name="colorLine">#ddd</color>
+
+    <color name="colorDelete">#ff1744</color>
+    <color name="colorRestore">#76ff03</color>
+</resources>

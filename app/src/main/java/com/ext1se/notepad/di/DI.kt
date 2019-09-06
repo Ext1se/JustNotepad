@@ -1,0 +1,11 @@
+package com.ext1se.notepad.di
+
+enum class DI {
+    APP_SCOPE,
+    PROJECTS_SCOPE,
+    FAVORITE_PROJECTS_SCOPE,
+    MANAGER_PROJECTS_SCOPE,
+    REMOVED_TASKS_SCOPE,
+    PROJECT_SCOPE,
+    TASK_SCOPE
+}

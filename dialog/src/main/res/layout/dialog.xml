@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        tools:theme="@style/BaseDialogStyle"
+        tools:ignore="Overdraw">
+
+    <RelativeLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="?attr/offsetContent"
+            android:paddingTop="?attr/offsetContent"
+            android:layout_marginBottom="?attr/offsetButton"
+            android:paddingBottom="?attr/offsetButton"
+            tools:background="@android:color/darker_gray"
+            android:background="@drawable/cardview_background">
+
+        <TextView
+                android:id="@+id/tv_title"
+                style="?attr/titleDialogStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:textAlignment="center"
+                tools:text="Select icon"/>
+
+        <View
+                android:id="@+id/div_header"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/tv_title"
+                android:background="@color/greyLight"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_icon_list"
+                style="?attr/listDialogStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/div_header"
+                android:layout_marginBottom="10dp"
+                tools:listitem="@layout/dialog_item_icon"
+                tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                tools:spanCount="6"
+                tools:itemCount="20"/>
+
+        <View
+                android:id="@+id/div_footer"
+                android:layout_height="1dp"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@id/rv_icon_list"
+                android:background="@color/greyLight"/>
+
+    </RelativeLayout>
+
+    <com.ext1se.dialog.common.CircleIconView
+            android:id="@+id/iv_icon"
+            android:layout_width="?attr/previewSize"
+            android:layout_height="?attr/previewSize"
+            tools:background="@drawable/circle_background"
+            android:padding="20dp"
+            app:tint="@android:color/white"
+            android:layout_centerHorizontal="true"/>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_cancel"
+            style="?attr/buttonDialogStyle"
+            android:layout_width="?attr/buttonSize"
+            android:layout_height="?attr/buttonSize"
+            android:layout_alignBottom="@+id/content"
+            android:scaleType="center"
+            android:layout_marginStart="28dp"
+            android:layout_marginBottom="-28dp"
+            app:backgroundTint="@color/redPrimary"
+            android:text="?attr/buttonDialogTextCancel"
+            android:layout_alignParentStart="true"
+            app:srcCompat="@drawable/ic_close"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_select"
+            style="?attr/buttonDialogStyle"
+            android:scaleType="center"
+            android:layout_width="?attr/buttonSize"
+            android:layout_height="?attr/buttonSize"
+            android:layout_alignBottom="@+id/content"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="-28dp"
+            app:backgroundTint="@color/greenPrimary"
+            android:text="?attr/buttonDialogTextSelect"
+            android:layout_alignParentEnd="true"
+            app:srcCompat="@drawable/ic_ok"/>
+
+
+</RelativeLayout>

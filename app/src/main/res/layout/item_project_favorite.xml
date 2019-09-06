@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/ll_project"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center_horizontal"
+              android:orientation="vertical"
+              android:padding="@dimen/item_project_margin"
+              android:background="?attr/selectableItemBackgroundBorderless">
+
+    <com.ext1se.dialog.icon_dialog.IconView
+            android:id="@+id/icon"
+            android:layout_width="@dimen/item_project_icon_size"
+            android:layout_height="@dimen/item_project_icon_size"
+            app:tint="@color/colorDefault"
+            tools:src="@drawable/ic_ok"/>
+
+    <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:lines="1"
+            android:maxLines="1"
+            android:textSize="@dimen/item_project_text_size"
+            tools:text="Повседневные задачи на всю жизнь"
+            android:textColor="@color/colorDefault"
+            android:ellipsize="end"/>
+
+</LinearLayout>

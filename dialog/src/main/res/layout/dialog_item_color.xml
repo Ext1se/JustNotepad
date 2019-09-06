@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ext1se.dialog.color_dialog.ColorView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/colorSize"
+    tools:layout_width="50dp"
+    tools:layout_height="50dp"
+    tools:padding="8dp"
+    tools:background="@drawable/circle_background"
+    tools:ignore="ContentDescription"/>

@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">Notepad</string>
+
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="settings">Настройки</string>
+
+
+    <string name="project_all">All</string>
+    <string name="project_work">Work</string>
+    <string name="project_home">Home</string>
+    <string name="project_education">Education</string>
+    <string name="project_ideas">Ideas</string>
+    <string name="project_routine">Routine</string>
+
+    <string name="project_edit">Edit project</string>
+    <string name="project_create">Create project</string>
+    <string name="project_title">Title</string>
+    <string name="project_description">Description</string>
+    <string name="project_color">Color</string>
+    <string name="project_icon">Icon</string>
+
+    <string name="project">Project</string>
+    <string name="projects">Projects</string>
+
+    <string name="title">Title</string>
+    <string name="note">Note</string>
+    <string name="task_hint_title">What should be done?</string>
+    <string name="task_title">Title</string>
+    <string name="task_hint_description">The detailed information</string>
+    <string name="task_description">Description</string>
+    <string name="select_project">Select a project</string>
+    <string name="description_empty">No description</string>
+    <string name="project_title_empty_error">The field can not be empty</string>
+    <string name="task_deleted">The note is deleted</string>
+    <string name="task_restore">Restore</string>
+    <string name="project_deleting_warning">Do you want to delete the project with its contents without the possibility of recovery?</string>
+    <string name="projects_max_count">The number of actual projects cannot be more than 5</string>
+    <string name="project_deleting">Delete a project</string>
+    <string name="project_hint_title">Project name</string>
+
+    <string name="actoin_add">Add</string>
+    <string name="action_save">Save</string>
+    <string name="icon">Icon</string>
+    <string name="project_icon_advice">Press to select icon for project</string>
+    <string name="project_color_advice">Press to select color for project</string>
+
+    <string name="toolbar_collapse">Press to collapse the projects list</string>
+    <string name="toolbar_expand">Press to expand the projects list</string>
+    <string name="project_creating">Project creating</string>
+    <string name="projects_empty">No projects</string>
+    <string name="create_project">Project creating</string>
+    <string name="tasks">Notes</string>
+    <string name="bucket">Bucket</string>
+</resources>

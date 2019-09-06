@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Блокнот</string>
+    <string name="settings">Настройки</string>
+
+    <string name="project_all">Все</string>
+    <string name="project_work">Работа</string>
+    <string name="project_home">Дом</string>
+    <string name="project_education">Учеба</string>
+    <string name="project_ideas">Идеи</string>
+    <string name="project_routine">Рутина</string>
+
+    <string name="project_create">Создать проект</string>
+    <string name="project_edit">Редактировать проект</string>
+    <string name="project_title">Название</string>
+    <string name="project_description">Описание</string>
+    <string name="project_color">Цвет</string>
+    <string name="project_icon">Иконка</string>
+
+    <string name="projects">Проекты</string>
+    <string name="project">Проект</string>
+
+    <string name="title">Заголовок</string>
+    <string name="note">Заметка</string>
+    <string name="task_hint_title">Что нужно сделать?</string>
+    <string name="task_title">Заголовок</string>
+    <string name="task_hint_description">Дополнительная информация</string>
+    <string name="task_description">Описание</string>
+    <string name="select_project">Выберите проект</string>
+    <string name="description_empty">Описание отсутствует</string>
+    <string name="project_title_empty_error">Поле не может быть пустым</string>
+    <string name="task_deleted">Заметка удалена</string>
+    <string name="task_restore">Восстановить</string>
+    <string name="project_deleting_warning">Вы действительно хотите удалить проект со всем его содержимым без возможности
+        восстановления?
+    </string>
+    <string name="projects_max_count">Количество актуальных проектов не может превышать 5.</string>
+    <string name="project_deleting">Удаление проекта</string>
+    <string name="project_hint_title">Название проекта</string>
+
+    <string name="actoin_add">Добавить</string>
+    <string name="action_save">Сохранить</string>
+    <string name="icon">Иконка</string>
+    <string name="project_icon_advice">Нажмите, чтобы выбрать иконку проекта</string>
+    <string name="project_color_advice">Нажмите, чтобы выбрать цвет проекта</string>
+
+    <string name="toolbar_collapse">Нажмите, чтобы скрыть список</string>
+    <string name="toolbar_expand">Нажмите, чтобы показать список</string>
+    <string name="project_creating">Создание проекта</string>
+    <string name="projects_empty">Проекты отсутствуют</string>
+    <string name="create_project">Создание проекта</string>
+    <string name="tasks">Заметки</string>
+    <string name="bucket">Корзина</string>
+</resources>

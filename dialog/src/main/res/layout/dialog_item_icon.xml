@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatImageView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/iconSize"
+    style="?attr/itemDialogStyle"
+    tools:layout_width="50dp"
+    tools:layout_height="50dp"
+    tools:padding="8dp"
+    tools:src="@drawable/ic_ok"
+    tools:background="@drawable/circle_background"
+    tools:ignore="ContentDescription"/>

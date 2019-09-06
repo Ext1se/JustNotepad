@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="colorIcon">#616161</color>
+    <color name="colorSelectedIcon">@color/colorAccent</color>
+
+    <color name="redPrimary">#f44335</color>
+    <color name="redDark">#b9000b</color>
+    <color name="redLight">#ff7960</color>
+
+    <color name="pinkPrimary">#e91e63</color>
+    <color name="pinkDark">#b0003a</color>
+    <color name="pinkLight">#ff6090</color>
+
+    <color name="purplePrimary">#9c27b0</color>
+    <color name="purpleDark">#6a0080</color>
+    <color name="purpleLight">#d05ce3</color>
+
+    <color name="deepPurplePrimary">#673ab7</color>
+    <color name="deepPurpleDark">#320b86</color>
+    <color name="deepPurpleLight">#9a67ea</color>
+
+    <color name="indigoPrimary">#3f51b5</color>
+    <color name="indigoDark">#002984</color>
+    <color name="indigoLight">#757de8</color>
+
+    <color name="bluePrimary">#2196f3</color>
+    <color name="blueDark">#0069c0</color>
+    <color name="blueLight">#6ec6ff</color>
+
+    <color name="lightBluePrimary">#03a9f4</color>
+    <color name="lightBlueDark">#007ac1</color>
+    <color name="lightBlueLight">#67daff</color>
+
+    <color name="cyanPrimary">#00bcd4</color>
+    <color name="cyanDark">#008ba3</color>
+    <color name="cyanLight">#62efff</color>
+
+    <color name="tealPrimary">#009688</color>
+    <color name="tealDark">#00675b</color>
+    <color name="tealLight">#52c7b8</color>
+
+    <color name="greenPrimary">#4caf50</color>
+    <color name="greenDark">#087f23</color>
+    <color name="greenLight">#80e27e</color>
+
+    <color name="lightGreenPrimary">#8bc34a</color>
+    <color name="lightGreenDark">#5a9216</color>
+    <color name="lightGreenLight">#bef67a</color>
+
+    <color name="limePrimary">#cddc39</color>
+    <color name="limeDark">#99aa00</color>
+    <color name="limeLight">#ffff6e</color>
+
+    <color name="yellowPrimary">#ffeb3b</color>
+    <color name="yellowDark">#c8b900</color>
+    <color name="yellowLight">#ffff72</color>
+
+    <color name="amberPrimary">#ffc107</color>
+    <color name="amberDark">#c79100</color>
+    <color name="amberLight">#fff350</color>
+
+    <color name="orangePrimary">#ff9800</color>
+    <color name="orangeDark">#c66900</color>
+    <color name="orangeLight">#ffc947</color>
+
+    <color name="deepOrangePrimary">#ff5722</color>
+    <color name="deepOrangeDark">#c41c00</color>
+    <color name="deepOrangeLight">#ff8a50</color>
+
+    <color name="brownPrimary">#795548</color>
+    <color name="brownDark">#4b2c20</color>
+    <color name="brownLight">#a98274</color>
+
+    <color name="greyPrimary">#9e9e9e</color>
+    <color name="greyDark">#707070</color>
+    <color name="greyLight">#cfcfcf</color>
+
+    <color name="blueGreyPrimary">#607d8b</color>
+    <color name="blueGreyDark">#34515e</color>
+    <color name="blueGreyLight">#8eacbb</color>
+
+    <color name="blackPrimary">#34495e</color>
+    <color name="blackDark">#2c3e50</color>
+    <color name="blackLight">#34515e</color>
+
+    <array name="redTheme">
+        <item>@color/redPrimary</item>
+        <item>@color/redDark</item>
+        <item>@color/redLight</item>
+    </array>
+
+    <array name="pinkTheme">
+        <item>@color/pinkPrimary</item>
+        <item>@color/pinkDark</item>
+        <item>@color/pinkLight</item>
+    </array>
+
+    <array name="purpleTheme">
+        <item>@color/purplePrimary</item>
+        <item>@color/purpleDark</item>
+        <item>@color/purpleLight</item>
+    </array>
+
+    <array name="deepPurpleTheme">
+        <item>@color/deepPurplePrimary</item>
+        <item>@color/deepPurpleDark</item>
+        <item>@color/deepPurpleLight</item>
+    </array>
+
+    <array name="indigoTheme">
+        <item>@color/indigoPrimary</item>
+        <item>@color/indigoDark</item>
+        <item>@color/indigoLight</item>
+    </array>
+
+    <array name="blueTheme">
+        <item>@color/bluePrimary</item>
+        <item>@color/blueDark</item>
+        <item>@color/blueLight</item>
+    </array>
+
+    <array name="lightBlueTheme">
+        <item>@color/lightBluePrimary</item>
+        <item>@color/lightBlueDark</item>
+        <item>@color/lightBlueLight</item>
+    </array>
+
+    <array name="cyanTheme">
+        <item>@color/cyanPrimary</item>
+        <item>@color/cyanDark</item>
+        <item>@color/cyanLight</item>
+    </array>
+
+    <array name="tealTheme">
+        <item>@color/tealPrimary</item>
+        <item>@color/tealDark</item>
+        <item>@color/tealLight</item>
+    </array>
+
+    <array name="greenTheme">
+        <item>@color/greenPrimary</item>
+        <item>@color/greenDark</item>
+        <item>@color/greenLight</item>
+    </array>
+
+    <array name="lightGreenTheme">
+        <item>@color/lightGreenPrimary</item>
+        <item>@color/lightGreenDark</item>
+        <item>@color/lightGreenLight</item>
+    </array>
+
+    <array name="limeTheme">
+        <item>@color/limePrimary</item>
+        <item>@color/limeDark</item>
+        <item>@color/limeLight</item>
+    </array>
+
+    <array name="yellowTheme">
+        <item>@color/yellowPrimary</item>
+        <item>@color/yellowDark</item>
+        <item>@color/yellowLight</item>
+    </array>
+
+    <array name="amberTheme">
+        <item>@color/amberPrimary</item>
+        <item>@color/amberDark</item>
+        <item>@color/amberLight</item>
+    </array>
+
+    <array name="orangeTheme">
+        <item>@color/orangePrimary</item>
+        <item>@color/orangeDark</item>
+        <item>@color/orangeLight</item>
+    </array>
+
+    <array name="deepOrangeTheme">
+        <item>@color/deepOrangePrimary</item>
+        <item>@color/deepOrangeDark</item>
+        <item>@color/deepOrangeLight</item>
+    </array>
+
+    <array name="brownTheme">
+        <item>@color/brownPrimary</item>
+        <item>@color/brownDark</item>
+        <item>@color/brownLight</item>
+    </array>
+
+    <array name="greyTheme">
+        <item>@color/greyPrimary</item>
+        <item>@color/greyDark</item>
+        <item>@color/greyLight</item>
+    </array>
+
+    <array name="blueGreyTheme">
+        <item>@color/blueGreyPrimary</item>
+        <item>@color/blueGreyDark</item>
+        <item>@color/blueGreyLight</item>
+    </array>
+
+    <array name="blackTheme">
+        <item>@color/blackPrimary</item>
+        <item>@color/blackDark</item>
+        <item>@color/blackLight</item>
+    </array>
+</resources>

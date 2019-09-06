@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+                name="vm"
+                type="com.ext1se.notepad.ui.ProjectsViewModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.MainActivity">
+
+        <include
+                android:id="@+id/appbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/toolbar"
+                bind:layout_constraintStart_toStartOf="parent"
+                bind:layout_constraintEnd_toStartOf="parent"
+                bind:layout_constraintTop_toTopOf="parent"
+                bind:layout_constraintBottom_toTopOf="@+id/container">
+        </include>
+
+        <FrameLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                bind:layout_constraintTop_toBottomOf="@+id/appbar"
+                bind:layout_constraintStart_toStartOf="parent"
+                bind:layout_constraintEnd_toEndOf="parent"
+                bind:layout_constraintBottom_toBottomOf="parent">
+        </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

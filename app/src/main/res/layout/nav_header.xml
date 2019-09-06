@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="DrawerHeaderBinding">
+        <import
+                type="android.view.View"
+                alias="v"/>
+        <import
+                type="Boolean"
+                alias="isShowing"/>
+        <variable
+                name="vm"
+                type="com.ext1se.notepad.ui.ProjectsViewModel"/>
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                android:theme="@style/AppTheme.AppBarOverlay"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:contentInsetStartWithNavigation="0dp"
+                app:subtitleTextAppearance="@style/ToolbarSubtitleAppearance"
+                app:title="@string/projects"
+                tools:title="Работа"
+                tools:subtitle="Описание проекта"
+                app:navigationIcon="@drawable/ic_clear"
+                app:subtitle="@{vm.isShowingList ? @string/toolbar_collapse : @string/toolbar_expand}"
+        />
+
+        <!--   <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:gravity="center_vertical"
+                   android:padding="8dp"
+                   android:layout_marginStart="6dp"
+                   android:drawableLeft="@drawable/ic_info"
+                   android:text="Нажмите, чтобы свернуть список"
+                   android:drawablePadding="16dp"
+           />-->
+
+        <com.ext1se.notepad.utils.DropDownRecyclerView
+                android:id="@+id/rv_projects"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_project"
+                tools:itemCount="6"
+                app:data="@{vm.projects}"
+                app:clickHandler="@{vm.onProjectListener}"
+                app:isShowing="@{vm.isShowingList}"
+        />
+
+        <View
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorDefault"
+                android:visibility="@{vm.isShowingList ? v.VISIBLE : v.GONE}"
+
+        />
+    </LinearLayout>
+</layout>
