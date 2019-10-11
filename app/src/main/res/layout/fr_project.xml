@@ -73,6 +73,7 @@
                                         android:layout_height="wrap_content"
                                         android:textColor="@color/colorDefault"
                                         android:text="@string/project_icon_advice"/>
+
                             </LinearLayout>
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -170,7 +171,9 @@
                                     android:hint="@string/project_hint_title"
                                     android:inputType="text"
                                     android:imeOptions="actionNext"
-                                    android:nextFocusDown="@+id/et_description"/>
+                                    android:nextFocusDown="@+id/et_description">
+                                <!--<requestFocus/>-->
+                            </EditText>
                         </LinearLayout>
 
                         <ImageView

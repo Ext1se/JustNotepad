@@ -1,29 +1,23 @@
 package com.ext1se.notepad.ui.projects.manage
 
 import android.app.AlertDialog
-import android.content.Context
 import android.os.Bundle
 import toothpick.Toothpick
 import javax.inject.Inject
 import android.view.*
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProviders
-import com.ext1se.notepad.App
 import com.ext1se.notepad.R
-import com.ext1se.notepad.common.BaseFragmentWithOptionsMenu
+import com.ext1se.notepad.common.BaseFragmentOptionsMenu
 import com.ext1se.notepad.data.ProjectRepository
-import com.ext1se.notepad.data.TaskRepository
 import com.ext1se.notepad.data.model.Project
 import com.ext1se.notepad.databinding.ManagerProjectsBinding
 import com.ext1se.notepad.di.DI
-import com.ext1se.notepad.di.models.FavoriteProjectsModule
 import com.ext1se.notepad.di.models.ManagerProjectsModule
 import com.ext1se.notepad.ui.ThemeState
 import com.ext1se.notepad.ui.projects.ProjectFragment
 import com.ext1se.notepad.ui.projects.favorite.FavoriteProjectsFragment
-import com.ext1se.notepad.utils.CustomFactoryManagerProjects
 
-class ManagerProjectsFragment : BaseFragmentWithOptionsMenu(),
+class ManagerProjectsFragment : BaseFragmentOptionsMenu(),
     ManagerProjectsAdapter.OnProjectListener {
 
     @Inject

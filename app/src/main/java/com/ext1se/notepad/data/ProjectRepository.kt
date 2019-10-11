@@ -39,6 +39,4 @@ class ProjectRepository(realm: Realm) : BaseRepository<Project>(realm, Project::
     }
 
     fun getCountActiveProjects(): Int = realm.where(Project::class.java).equalTo("isFavorite", true).count().toInt()
-
-    fun getCountTasks(id: Long): Int = realm.where(Task::class.java).equalTo("idProject", id).count().toInt()
 }

@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 
-abstract class BaseFragmentWithOptionsMenu : BaseFragment() {
+abstract class BaseFragmentOptionsMenu : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

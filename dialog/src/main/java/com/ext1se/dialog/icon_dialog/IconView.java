@@ -23,7 +23,12 @@ package com.ext1se.dialog.icon_dialog;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.AttributeSet;
 
 import androidx.annotation.NonNull;
@@ -38,6 +43,9 @@ import com.ext1se.dialog.R;
  * reflection, which cannot be done by the layout editor
  */
 public class IconView extends AppCompatImageView {
+
+    private ColorFilter mFilter = null;
+    private int mColor = -1;
 
     public IconView(Context context) {
         this(context, null, 0);
@@ -85,4 +93,30 @@ public class IconView extends AppCompatImageView {
         setImageDrawable(iconDrawable);
     }
 
+
+    public void  setColorFilterPreLollipop(int color) {
+        float[] matrix = {
+                0, 0, 0, 0, ((color & 0xFF0000) / 0xFFFF),
+                0, 0, 0, 0, ((color & 0xFF00) / 0xFF),
+                0, 0, 0, 0, (color & 0xFF),
+                0, 0, 0, 1, 0 };
+        mFilter = new ColorMatrixColorFilter(matrix);
+        mColor = color;
+        requestLayout();
+    }
+
+    public void setColor(int color){
+        mColor = color;
+        requestLayout();
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            if (mColor != -1) {
+                setColorFilter(mColor);
+            }
+        }
+        super.draw(canvas);
+    }
 }

@@ -2,6 +2,7 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <!--<style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">-->
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -23,6 +24,17 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <public name="ItemCardStyle" type="style"/>
+    <style name="ItemCardStyle">
+        <item name="android:layout_marginTop">@dimen/card_margin_vertical</item>
+        <item name="android:layout_marginBottom">@dimen/card_margin_vertical</item>
+        <item name="android:layout_marginStart">@dimen/card_margin_horizontal</item>
+        <item name="android:layout_marginEnd">@dimen/card_margin_horizontal</item>
+        <item name="cardElevation">@dimen/item_card_elevation</item>
+        <item name="cardCornerRadius">@dimen/item_card_corner_radius</item>
+        <item name="cardBackgroundColor">@android:color/white</item>
+    </style>
+
     <public name="AttributeEditTextStyle" type="style"/>
     <style name="AttributeEditTextStyle">
         <item name="android:textColor">@color/colorDefault</item>
@@ -34,10 +46,10 @@
 
     <public name="AttributeCardViewStyle" type="style"/>
     <style name="AttributeCardViewStyle" parent="CardView">
-        <item name="cardElevation">6dp</item>
-        <item name="cardCornerRadius">6dp</item>
+        <item name="cardElevation">@dimen/item_card_elevation</item>
+        <item name="cardCornerRadius">@dimen/item_card_corner_radius</item>
         <item name="cardBackgroundColor">@android:color/white</item>
-        <item name="android:layout_margin">4dp</item>
+        <item name="android:layout_margin">@dimen/item_card_margin</item>
     </style>
 
     <public name="AttributeItemStyle" type="style"/>

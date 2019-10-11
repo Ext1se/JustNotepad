@@ -38,7 +38,7 @@ object DatabaseUtils {
             idIcon = 200
             isFavorite = true
         })
-        projectRepository.addObject(Project().apply {
+/*        projectRepository.addObject(Project().apply {
             id = "4"
             name = resources.getString(R.string.project_routine)
             //description = "Повседневные задачи"
@@ -46,7 +46,7 @@ object DatabaseUtils {
             idColorTheme = R.array.blackTheme
             idIcon = 102
             isFavorite = true
-        })
+        })*/
         projectRepository.addObject(Project().apply {
             id = "5"
             name = resources.getString(R.string.project_ideas)

@@ -41,8 +41,8 @@
     <string name="actoin_add">Добавить</string>
     <string name="action_save">Сохранить</string>
     <string name="icon">Иконка</string>
-    <string name="project_icon_advice">Нажмите, чтобы выбрать иконку проекта</string>
-    <string name="project_color_advice">Нажмите, чтобы выбрать цвет проекта</string>
+    <string name="project_icon_advice">Нажмите, чтобы выбрать иконку</string>
+    <string name="project_color_advice">Нажмите, чтобы выбрать цвет</string>
 
     <string name="toolbar_collapse">Нажмите, чтобы скрыть список</string>
     <string name="toolbar_expand">Нажмите, чтобы показать список</string>

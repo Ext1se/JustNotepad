@@ -43,6 +43,11 @@ class ProjectsViewModel(
         selectedProject.value = project
     }
 
+    fun setSelectedProjectId(id: String) {
+        selectedProject.value = projectRepository.getObject(preferencesHelper.getSelectedProjectId())
+        preferencesHelper.setSelectedProjectId(id)
+    }
+
     fun setThemeState(state: ThemeState) {
         stateTheme = state
     }
@@ -55,7 +60,7 @@ class ProjectsViewModel(
     }
 
     fun removeProject(project: Project) {
-        if (project == selectedProject.value) {
+        if (project.id == selectedProject.value?.id) {
             val projectList = projects.value
             if (!projectList.isNullOrEmpty() && projectList.size > 1) {
                 for (p in projectList) {

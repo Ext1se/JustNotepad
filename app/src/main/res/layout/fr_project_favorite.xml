@@ -20,41 +20,41 @@
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_tasks"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:background="@android:color/white"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/line"
-                tools:listitem="@layout/item_task"
+                android:orientation="vertical"
+                app:clickHandler="@{vm.onTaskListener}"
                 app:data="@{vm.tasks}"
-                app:clickHandler="@{vm.onTaskListener}"/>
+                app:layout_constraintBottom_toTopOf="@id/line"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:background="@android:color/holo_green_dark"
+                tools:listitem="@layout/item_task" />
 
         <View
                 android:id="@+id/line"
                 android:layout_width="match_parent"
                 android:layout_height="0.6dp"
-                app:layout_constraintTop_toBottomOf="@+id/rv_tasks"
+                android:background="@color/colorDefault"
                 app:layout_constraintBottom_toTopOf="@+id/rv_projects"
-                android:background="@color/colorDefault">
-        </View>
+                app:layout_constraintTop_toBottomOf="@+id/rv_tasks"></View>
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_projects"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="2dp"
-                android:overScrollMode="never"
                 android:background="@android:color/white"
-                app:layout_constraintTop_toBottomOf="@id/line"
+                android:overScrollMode="never"
+                android:paddingTop="2dp"
+                app:clickHandler="@{vm.onProjectListener}"
+                app:data="@{vm.projects}"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/line"
+                app:selectedItem="@{vm.selectedProject}"
+                tools:itemCount="5"
                 tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 tools:listitem="@layout/item_project_favorite"
-                tools:itemCount="5"
-                tools:spanCount="5"
-                app:clickHandler="@{vm.onProjectListener}"
-                app:selectedItem="@{vm.selectedProject}"
-                app:data="@{vm.projects}"/>
+                tools:spanCount="5" />
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
                 android:id="@+id/snackbar_coordinator"
@@ -63,15 +63,15 @@
                 app:layout_constraintBottom_toTopOf="@+id/line"
                 app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="12dp"
-                android:layout_gravity="bottom|end"
-                tools:backgroundTint="@android:color/black"
-                app:srcCompat="@drawable/ic_add"
-                app:color="@{vm.idColorTheme}"/>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="12dp"
+                    app:color="@{vm.idColorTheme}"
+                    app:srcCompat="@drawable/ic_add"
+                    tools:backgroundTint="@android:color/black" />
 
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -17,6 +17,7 @@
             android:layout_height="match_parent"
             android:background="@android:color/white"
             tools:listitem="@layout/item_task_removed"
+            tools:background="@android:color/black"
             app:data="@{vm.tasks}"
             app:clickHandler="@{vm.onTaskListener}">
     </androidx.recyclerview.widget.RecyclerView>

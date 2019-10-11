@@ -31,7 +31,7 @@ class SharedPreferencesHelper(context: Context) {
         sharedPreferences.edit().putString(KEY_PROJECT, gson.toJson(project, TYPE_PROJECT)).apply()
     }
 
-    fun getSelectedProject(): Project = gson.fromJson(sharedPreferences.getString(KEY_PROJECT, " "), TYPE_PROJECT)
+    fun getSelectedProject(): Project = gson.fromJson(sharedPreferences.getString(KEY_PROJECT, DatabaseUtils.ID_DEFAULT_SELECTED_PROJECT ), TYPE_PROJECT)
 
     fun setSelectedProjectId(id: String){
         sharedPreferences.edit().putString(KEY_PROJECT_ID, id).apply()

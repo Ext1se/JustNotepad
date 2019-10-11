@@ -6,29 +6,25 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.core.os.bundleOf
-import androidx.lifecycle.ViewModelProviders
 import com.ext1se.dialog.color_dialog.ColorDialog
 import com.ext1se.dialog.color_dialog.ColorItem
 import com.ext1se.dialog.icon_dialog.IconDialog
 import com.ext1se.dialog.icon_dialog.IconItem
-import com.ext1se.notepad.App
 import com.ext1se.notepad.R
-import com.ext1se.notepad.common.BaseFragmentWithOptionsMenu
-import com.ext1se.notepad.data.ProjectRepository
+import com.ext1se.notepad.common.BaseFragmentOptionsMenu
 import com.ext1se.notepad.data.model.Project
 import com.ext1se.notepad.databinding.ProjectBinding
 import com.ext1se.notepad.di.DI
-import com.ext1se.notepad.di.models.FavoriteProjectsModule
 import com.ext1se.notepad.di.models.ProjectModule
 import com.ext1se.notepad.ui.ThemeState
 import com.ext1se.notepad.ui.projects.favorite.FavoriteProjectsFragment
-import com.ext1se.notepad.utils.CustomFactoryProject
 import kotlinx.android.synthetic.main.fr_task.*
 import toothpick.Toothpick
 import javax.inject.Inject
 
-class ProjectFragment : BaseFragmentWithOptionsMenu(), IconDialog.Callback, ColorDialog.Callback {
+class ProjectFragment : BaseFragmentOptionsMenu(), IconDialog.Callback, ColorDialog.Callback {
 
     @Inject
     lateinit var projectViewModel: ProjectViewModel
@@ -71,6 +67,8 @@ class ProjectFragment : BaseFragmentWithOptionsMenu(), IconDialog.Callback, Colo
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        /*(context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
+            .toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);*/
 
         binding.clIcon.setOnClickListener {
             IconDialog()
@@ -118,7 +116,7 @@ class ProjectFragment : BaseFragmentWithOptionsMenu(), IconDialog.Callback, Colo
         } else {
             newProject.id = selectedProject!!.id
             newProject.dateCreated = selectedProject!!.dateCreated
-            newProject.isFavorite == selectedProject!!.isFavorite
+            newProject.isFavorite = selectedProject!!.isFavorite
             dataObserver.updateProject(newProject)
             selectedProject = null
         }

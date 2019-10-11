@@ -8,7 +8,6 @@ import javax.inject.Inject
 import android.view.*
 import androidx.lifecycle.ViewModelProviders
 import com.ext1se.dialog.color_dialog.ColorHelper
-import com.ext1se.notepad.App
 import com.ext1se.notepad.R
 import com.ext1se.notepad.data.ProjectRepository
 import com.ext1se.notepad.data.TaskRepository
@@ -19,13 +18,13 @@ import com.ext1se.notepad.ui.tasks.TaskFragment
 import com.ext1se.notepad.ui.tasks.TasksAdapter
 import com.ext1se.notepad.utils.CustomFactoryFavoriteProjects
 import com.google.android.material.snackbar.Snackbar
-import com.ext1se.notepad.common.BaseFragmentWithOptionsMenu
+import com.ext1se.notepad.common.BaseFragmentOptionsMenu
 import com.ext1se.notepad.di.DI
 import com.ext1se.notepad.di.models.FavoriteProjectsModule
 import com.ext1se.notepad.ui.ThemeState
 import com.ext1se.notepad.ui.projects.ProjectFragment
 
-class FavoriteProjectsFragment : BaseFragmentWithOptionsMenu(),
+class FavoriteProjectsFragment : BaseFragmentOptionsMenu(),
     FavoriteProjectsAdapter.OnProjectListener,
     TasksAdapter.OnTaskListener {
 
@@ -80,6 +79,7 @@ class FavoriteProjectsFragment : BaseFragmentWithOptionsMenu(),
     override fun onClickProject(project: Project, position: Int) {
         favoriteProjectsViewModel.setSelectedProject(project)
         if (dataObserver.getSelectedProject() != project) {
+            //favoriteProjectsViewModel.setSelectedProject(project)
             dataObserver.setSelectedProject(project)
             activityObserver.updateTheme(project)
         }

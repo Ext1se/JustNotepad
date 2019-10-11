@@ -1,31 +1,26 @@
 package com.ext1se.notepad.ui.tasks
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.lifecycle.ViewModelProviders
-import com.ext1se.notepad.App
 import com.ext1se.notepad.R
-import com.ext1se.notepad.common.BaseFragmentWithOptionsMenu
+import com.ext1se.notepad.common.BaseFragmentOptionsMenu
 import com.ext1se.notepad.data.TaskRepository
 import com.ext1se.notepad.data.model.Project
 import com.ext1se.notepad.data.model.Task
 import com.ext1se.notepad.databinding.TaskBinding
 import com.ext1se.notepad.di.DI
-import com.ext1se.notepad.di.models.FavoriteProjectsModule
 import com.ext1se.notepad.di.models.TaskModule
 import com.ext1se.notepad.ui.projects.favorite.FavoriteProjectsFragment
 import com.ext1se.notepad.ui.projects.dialog.ProjectDialog
-import com.ext1se.notepad.utils.CustomFactoryTask
 import kotlinx.android.synthetic.main.fr_task.*
 import toothpick.Toothpick
 import javax.inject.Inject
 
-class TaskFragment : BaseFragmentWithOptionsMenu(), ProjectDialog.Callback {
+class TaskFragment : BaseFragmentOptionsMenu(), ProjectDialog.Callback {
 
     @Inject
     lateinit var taskRepository: TaskRepository

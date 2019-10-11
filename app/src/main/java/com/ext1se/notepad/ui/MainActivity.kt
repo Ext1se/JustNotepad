@@ -1,6 +1,7 @@
 package com.ext1se.notepad.ui
 
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
@@ -63,6 +64,7 @@ class MainActivity : BaseActivity(),
         if (preferencesHelper.isFirstRun()) {
             DatabaseUtils.init(projectRepository, resources)
             preferencesHelper.setFirstRun(false)
+            projectsViewModel.setSelectedProjectId(DatabaseUtils.ID_DEFAULT_SELECTED_PROJECT)
         }
         setContentView()
         if (savedInstanceState == null) {
@@ -231,11 +233,7 @@ class MainActivity : BaseActivity(),
     }
 
     override fun updateFragment(fragment: Fragment, isCheckExisting: Boolean, isBackToStack: Boolean) {
-        val view = currentFocus
-        view?.let { v ->
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
-            imm?.let { it.hideSoftInputFromWindow(v.windowToken, 0) }
-        }
+        hideKeyboard()
         val currentFragment = supportFragmentManager.findFragmentById(R.id.container)
         if (currentFragment != null) {
             if (currentFragment == fragment) {
@@ -293,6 +291,8 @@ class MainActivity : BaseActivity(),
                 return
             }
         }
+        updateFragment(FavoriteProjectsFragment.newInstance(), true, false)
+        /*
         fragment = supportFragmentManager.findFragmentByTag(FavoriteProjectsFragment::class.java.simpleName)
         if (fragment == null) {
             fragment = FavoriteProjectsFragment.newInstance()
@@ -301,8 +301,13 @@ class MainActivity : BaseActivity(),
                 .replace(R.id.container, fragment, fragment.javaClass.simpleName)
                 .commit()
         } else {
-            supportFragmentManager.popBackStack()
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.container, fragment, fragment.javaClass.simpleName)
+                .commit()
+            //supportFragmentManager.popBackStack()
         }
+        */
     }
 
     override fun inject() {
@@ -319,16 +324,25 @@ class MainActivity : BaseActivity(),
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             binding.drawerLayout.closeDrawer(GravityCompat.START)
         } else {
+            hideKeyboard()
             super.onBackPressed()
         }
     }
 
-/*
-    override fun getResources(): Resources {
-        return super.getResources().apply {
-            configuration.fontScale = 1.0f
-            updateConfiguration(configuration, displayMetrics)
+    private fun hideKeyboard(){
+        val view = currentFocus
+        view?.let { v ->
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+            imm?.let { it.hideSoftInputFromWindow(v.windowToken, 0) }
         }
     }
-*/
+
+
+/*    override fun getResources(): Resources {
+        return super.getResources().apply {
+            //configuration.fontScale = 1.0f
+            configuration.fontScale = 0.9f
+            updateConfiguration(configuration, displayMetrics)
+        }
+    }*/
 }
