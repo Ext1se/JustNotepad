@@ -5,16 +5,13 @@ import android.preference.PreferenceManager
 import com.ext1se.notepad.App
 import com.ext1se.notepad.data.ProjectRepository
 import com.ext1se.notepad.data.TaskRepository
+import com.ext1se.notepad.di.PREFERENCES_DEFAULT
+import com.ext1se.notepad.di.PREFERENCES_HELPER
 import com.ext1se.notepad.preferences.SharedPreferencesHelper
 import io.realm.Realm
 import toothpick.config.Module
 
 class AppModule(private val app: App) : Module() {
-
-    companion object {
-        const val PREFERENCES_HELPER = "PREFERENCES_HELPER"
-        const val PREFERENCES_DEFAULT = "PREFERENCES_DEFAULT"
-    }
 
     private val realm = provideRealm()
 

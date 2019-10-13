@@ -4,12 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ext1se.notepad.R
+import com.ext1se.notepad.common.TaskListener
 import com.ext1se.notepad.data.model.Task
 import com.ext1se.notepad.utils.ItemSwipeHelper
 
 class TasksAdapter(
     private var tasks: MutableList<Task> = mutableListOf(),
-    private val listener: OnTaskListener
+    private val listener: TaskListener
 ) : RecyclerView.Adapter<TaskViewHolder>(),
     ItemSwipeHelper.ItemSwipeHelperAdapter {
 
@@ -28,8 +29,8 @@ class TasksAdapter(
     }
 
     override fun onItemDismiss(position: Int, direction: Int) {
-        val callback = object : OnRestoreTaskListener {
-            override fun onRestoreItem(task: Task, position: Int) {
+        val callback = object : TaskListener.RestoreTaskListener {
+            override fun restoreTask(task: Task, position: Int) {
                 tasks.getOrNull(0)?.let {
                     if (task.idProject == it.idProject) {
                         notifyItemInserted(position)
@@ -37,17 +38,7 @@ class TasksAdapter(
                 }
             }
         }
-        listener.onSwipeTask(tasks[position], position, callback)
+        listener.swipeTask(tasks[position], position, direction, callback)
         notifyItemRemoved(position)
-    }
-
-    interface OnTaskListener {
-        fun onClickTask(task: Task, position: Int)
-        fun onSwipeTask(task: Task, position: Int, onRestoreTaskListener: OnRestoreTaskListener)
-    }
-
-    @FunctionalInterface
-    interface OnRestoreTaskListener {
-        fun onRestoreItem(task: Task, position: Int)
     }
 }

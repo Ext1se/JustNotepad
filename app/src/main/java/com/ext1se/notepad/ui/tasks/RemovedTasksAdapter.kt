@@ -4,12 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ext1se.notepad.R
+import com.ext1se.notepad.common.TaskListener
 import com.ext1se.notepad.data.model.Task
 import com.ext1se.notepad.utils.ItemSwipeHelper
 
 class RemovedTasksAdapter(
     private var tasks: MutableList<Task> = mutableListOf(),
-    private val listener: OnTaskListener
+    private val listener: TaskListener
 ) : RecyclerView.Adapter<RemovedTaskViewHolder>(),
     ItemSwipeHelper.ItemSwipeHelperAdapter {
 
@@ -26,10 +27,6 @@ class RemovedTasksAdapter(
         val task = tasks[position]
         tasks.removeAt(position)
         notifyItemRemoved(position)
-        listener.onSwipeTask(task, position, direction)
-    }
-
-    interface OnTaskListener {
-        fun onSwipeTask(task: Task, position: Int, direction: Int)
+        listener.swipeTask(task, position, direction, null)
     }
 }

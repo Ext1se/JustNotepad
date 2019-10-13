@@ -2,6 +2,8 @@ package com.ext1se.notepad.ui.projects.favorite
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.ext1se.notepad.common.ProjectListener
+import com.ext1se.notepad.common.TaskListener
 import com.ext1se.notepad.data.ProjectRepository
 import com.ext1se.notepad.data.TaskRepository
 import com.ext1se.notepad.data.model.Project
@@ -11,8 +13,8 @@ import com.ext1se.notepad.ui.tasks.TasksAdapter
 class FavoriteProjectsViewModel(
     private val projectRepository: ProjectRepository,
     private val taskRepository: TaskRepository,
-    var onProjectListener: FavoriteProjectsAdapter.OnProjectListener,
-    var onTaskListener: TasksAdapter.OnTaskListener
+    var projectListener: ProjectListener,
+    var taskListener: TaskListener
 ) : ViewModel() {
 
     val projects: MutableLiveData<List<Project>> = MutableLiveData()

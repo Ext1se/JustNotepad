@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ext1se.dialog.color_dialog.ColorHelper
 import com.ext1se.dialog.icon_dialog.IconView
+import com.ext1se.notepad.common.ProjectListener
+import com.ext1se.notepad.common.TaskListener
 import com.ext1se.notepad.data.model.Project
 import com.ext1se.notepad.data.model.Task
 import com.ext1se.notepad.ui.projects.ProjectAdapter
@@ -27,12 +29,12 @@ object CustomBinding {
      * @param listener is callback for click item's
      */
     @JvmStatic
-    @BindingAdapter("bind:data", "bind:selectedItem", "bind:clickHandler")
+    @BindingAdapter("bind:data", "bind:selectedItem", "bind:projectListener")
     fun configureFavoriteProjectsRecyclerView(
         recyclerView: RecyclerView,
         projects: List<Project>?,
         selectedProject: Project?,
-        listener: FavoriteProjectsAdapter.OnProjectListener?
+        listener: ProjectListener?
     ) {
         if (projects == null || listener == null || selectedProject == null) {
             return
@@ -62,11 +64,11 @@ object CustomBinding {
      * @param listener is callback for click item's
      */
     @JvmStatic
-    @BindingAdapter("bind:data", "bind:clickHandler")
+    @BindingAdapter("bind:data", "bind:taskListener")
     fun configureTasksRecyclerView(
         recyclerView: RecyclerView,
         tasks: MutableList<Task>?, //RealmResult
-        listener: TasksAdapter.OnTaskListener?
+        listener: TaskListener?
     ) {
         if (tasks == null || listener == null) {
             return
@@ -93,11 +95,11 @@ object CustomBinding {
      * @param listener is callback for click item's
      */
     @JvmStatic
-    @BindingAdapter("bind:data", "bind:clickHandler")
+    @BindingAdapter("bind:data", "bind:removedTaskListener")
     fun configureRemovedTasksRecyclerView(
         recyclerView: RecyclerView,
         tasks: MutableList<Task>?,
-        listener: RemovedTasksAdapter.OnTaskListener?
+        listener: TaskListener?
     ) {
         if (tasks == null || listener == null) {
             return
@@ -118,11 +120,11 @@ object CustomBinding {
      * @param listener is callback for click item's
      */
     @JvmStatic
-    @BindingAdapter("bind:data", "bind:clickHandler")
+    @BindingAdapter("bind:data", "bind:manageProjectListener")
     fun configureManagerProjectsRecyclerView(
         recyclerView: RecyclerView,
         projects: List<Project>?,
-        listener: ManagerProjectsAdapter.OnProjectListener?
+        listener: ProjectListener?
     ) {
         if (projects == null || listener == null) {
             return
@@ -143,12 +145,11 @@ object CustomBinding {
      * @param listener is callback for click item's
      */
     @JvmStatic
-    @BindingAdapter("bind:data", "bind:clickHandler")
+    @BindingAdapter("bind:data", "bind:menuProjectListener")
     fun configureMenuProjectsRecyclerView(
         recyclerView: RecyclerView,
         projects: List<Project>?,
-        listener: ProjectAdapter.OnProjectListener?
-
+        listener: ProjectListener?
     ) {
         if (projects == null || listener == null) {
             return

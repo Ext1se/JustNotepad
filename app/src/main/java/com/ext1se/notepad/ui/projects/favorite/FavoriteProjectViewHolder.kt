@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ext1se.dialog.color_dialog.ColorHelper
 import com.ext1se.dialog.icon_dialog.IconView
 import com.ext1se.notepad.R
+import com.ext1se.notepad.common.ProjectListener
 import com.ext1se.notepad.data.model.Project
 
 
@@ -18,13 +19,13 @@ class FavoriteProjectViewHolder(itemView: View) : RecyclerView.ViewHolder(itemVi
 
     fun bind(
         project: Project,
-        listener: FavoriteProjectsAdapter.OnProjectListener,
+        listener: ProjectListener,
         isSelected: Boolean = false
     ) {
         icon.setIcon(project.idIcon)
         name.text = project.name
         itemView.setOnClickListener {
-            listener.onClickProject(project, adapterPosition)
+            listener.selectProject(project, adapterPosition)
         }
         val colorItem = ColorHelper.getColor(itemView.context, project.idColorTheme)
         if (isSelected) {

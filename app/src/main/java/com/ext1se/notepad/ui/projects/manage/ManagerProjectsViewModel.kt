@@ -2,6 +2,7 @@ package com.ext1se.notepad.ui.projects.manage
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.ext1se.notepad.common.ProjectListener
 import com.ext1se.notepad.data.ProjectRepository
 import com.ext1se.notepad.data.TaskRepository
 import com.ext1se.notepad.data.model.Project
@@ -10,7 +11,7 @@ import com.ext1se.notepad.ui.tasks.TasksAdapter
 
 class ManagerProjectsViewModel(
     private val projectRepository: ProjectRepository,
-    var onProjectListener: ManagerProjectsAdapter.OnProjectListener
+    var projectListener: ProjectListener
 ) : ViewModel() {
 
     val projects: MutableLiveData<List<Project>> = MutableLiveData()

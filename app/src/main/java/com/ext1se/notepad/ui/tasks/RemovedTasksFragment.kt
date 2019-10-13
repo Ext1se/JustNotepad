@@ -1,28 +1,22 @@
 package com.ext1se.notepad.ui.tasks
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.ItemTouchHelper
-import com.ext1se.notepad.App
 import com.ext1se.notepad.common.BaseFragment
-import com.ext1se.notepad.data.ProjectRepository
+import com.ext1se.notepad.common.TaskListener
 import com.ext1se.notepad.data.TaskRepository
 import com.ext1se.notepad.data.model.Task
 import com.ext1se.notepad.databinding.RemovedTasksBinding
 import com.ext1se.notepad.di.DI
-import com.ext1se.notepad.di.models.FavoriteProjectsModule
 import com.ext1se.notepad.di.models.RemovedTasksModule
 import com.ext1se.notepad.ui.ThemeState
-import com.ext1se.notepad.utils.CustomFactoryRemovedTasks
 import toothpick.Toothpick
 import javax.inject.Inject
 
-class RemovedTasksFragment : BaseFragment(),
-    RemovedTasksAdapter.OnTaskListener {
+class RemovedTasksFragment : BaseFragment(), TaskListener {
 
     @Inject
     lateinit var taskRepository: TaskRepository
@@ -35,9 +29,13 @@ class RemovedTasksFragment : BaseFragment(),
         fun newInstance() = RemovedTasksFragment()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         binding = RemovedTasksBinding.inflate(inflater, container, false)
-        removedTasksViewModel.onTaskListener = this
+        removedTasksViewModel.taskListener = this
         binding.vm = removedTasksViewModel
         binding.lifecycleOwner = this
         return binding.root
@@ -49,7 +47,14 @@ class RemovedTasksFragment : BaseFragment(),
         activityObserver.updateNavigation(dataObserver.getSelectedProject(), true)
     }
 
-    override fun onSwipeTask(task: Task, position: Int, direction: Int) {
+    override fun selectTask(task: Task, position: Int) {}
+
+    override fun swipeTask(
+        task: Task,
+        position: Int,
+        direction: Int,
+        callback: TaskListener.RestoreTaskListener?
+    ) {
         if (direction == ItemTouchHelper.START) {
             taskRepository.removeObject(task)
             return

@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ext1se.notepad.R
+import com.ext1se.notepad.common.TaskListener
 import com.ext1se.notepad.data.model.Task
 
 class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -11,10 +12,10 @@ class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val title: TextView = itemView.findViewById(R.id.tv_title)
     private val description: TextView = itemView.findViewById(R.id.tv_description)
 
-    fun bind(task: Task, listener: TasksAdapter.OnTaskListener) {
+    fun bind(task: Task, listener: TaskListener) {
 
         itemView.setOnClickListener {
-            listener.onClickTask(task, adapterPosition)
+            listener.selectTask(task, adapterPosition)
         }
 
         if (task.name.isBlank()) {

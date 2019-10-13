@@ -9,6 +9,7 @@ import com.ext1se.dialog.color_dialog.ColorHelper
 import com.ext1se.dialog.color_dialog.ColorItem
 import com.ext1se.dialog.common.RectIconView
 import com.ext1se.notepad.R
+import com.ext1se.notepad.common.ProjectListener
 import com.ext1se.notepad.data.model.Project
 
 class FullProjectViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -19,7 +20,7 @@ class FullProjectViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
     private val star: ImageButton = itemView.findViewById(R.id.iv_star)
     private val edit: ImageView = itemView.findViewById(R.id.iv_edit)
 
-    fun bind(project: Project, listener: ManagerProjectsAdapter.OnProjectListener) {
+    fun bind(project: Project, listener: ProjectListener) {
         icon.setIconTheme(project.idColorTheme, project.idIcon)
 
         if (project.name.isBlank()) {
@@ -43,7 +44,7 @@ class FullProjectViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
         }
 
         itemView.setOnClickListener {
-            listener.onClickProject(project, adapterPosition)
+            listener.selectProject(project, adapterPosition)
         }
 
         star.setOnClickListener{

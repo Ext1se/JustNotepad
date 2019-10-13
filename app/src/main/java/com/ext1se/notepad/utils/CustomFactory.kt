@@ -2,6 +2,8 @@ package com.ext1se.notepad.utils
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.ext1se.notepad.common.ProjectListener
+import com.ext1se.notepad.common.TaskListener
 import com.ext1se.notepad.data.ProjectRepository
 import com.ext1se.notepad.data.TaskRepository
 import com.ext1se.notepad.preferences.SharedPreferencesHelper
@@ -18,40 +20,83 @@ import com.ext1se.notepad.ui.tasks.TaskViewModel
 import com.ext1se.notepad.ui.tasks.TasksAdapter
 import org.jetbrains.annotations.NotNull
 
-class CustomFactory(
-    private val preferencesHelper: SharedPreferencesHelper? = null,
+class CustomFactory() : ViewModelProvider.NewInstanceFactory() {
 
-    private val projectRepository: ProjectRepository? = null,
-    private val taskRepository: TaskRepository? = null,
+    private lateinit var preferencesHelper: SharedPreferencesHelper
+    private lateinit var projectRepository: ProjectRepository
+    private lateinit var taskRepository: TaskRepository
+    private lateinit var projectListener: ProjectListener
+    private lateinit var taskListener: TaskListener
 
-    private val managerProjectListener: ManagerProjectsAdapter.OnProjectListener? = null,
+    constructor(
+        preferencesHelper: SharedPreferencesHelper,
+        projectRepository: ProjectRepository,
+        projectListener: ProjectListener
+    ) : this() {
+        this.preferencesHelper = preferencesHelper
+        this.projectRepository = projectRepository
+        this.projectListener = projectListener
+    }
 
-    private val favoriteProjectListener: FavoriteProjectsAdapter.OnProjectListener? = null,
-    private val tasksListener: TasksAdapter.OnTaskListener? = null,
+    constructor(
+        projectRepository: ProjectRepository,
+        projectListener: ProjectListener
+    ) : this() {
+        this.projectRepository = projectRepository
+        this.projectListener = projectListener
+    }
 
-    private val removedTasksListener: RemovedTasksAdapter.OnTaskListener? = null,
+    constructor(
+        projectRepository: ProjectRepository,
+        projectListener: ProjectListener,
+        taskRepository: TaskRepository,
+        taskListener: TaskListener
+    ) : this() {
+        this.projectRepository = projectRepository
+        this.projectListener = projectListener
+        this.taskRepository = taskRepository
+        this.taskListener = taskListener
+    }
 
-    private val projectListener: ProjectAdapter.OnProjectListener? = null
-
-
-) : ViewModelProvider.NewInstanceFactory() {
+    constructor(
+        projectRepository: ProjectRepository,
+        taskRepository: TaskRepository,
+        taskListener: TaskListener
+    ) : this() {
+        this.projectRepository = projectRepository
+        this.taskRepository = taskRepository
+        this.taskListener = taskListener
+    }
 
     @NotNull
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ProjectsViewModel::class.java)) {
-            return ProjectsViewModel(projectRepository!!, preferencesHelper!!, projectListener!!) as T
+            return ProjectsViewModel(
+                projectRepository,
+                preferencesHelper,
+                projectListener
+            ) as T
         }
 
         if (modelClass.isAssignableFrom(ManagerProjectsViewModel::class.java)) {
-            return ManagerProjectsViewModel(projectRepository!!, managerProjectListener!!) as T
+            return ManagerProjectsViewModel(projectRepository, projectListener) as T
         }
 
         if (modelClass.isAssignableFrom(FavoriteProjectsViewModel::class.java)) {
-            return FavoriteProjectsViewModel(projectRepository!!, taskRepository!!, favoriteProjectListener!!, tasksListener!!) as T
+            return FavoriteProjectsViewModel(
+                projectRepository,
+                taskRepository,
+                projectListener,
+                taskListener
+            ) as T
         }
 
         if (modelClass.isAssignableFrom(RemovedTasksViewModel::class.java)) {
-            return RemovedTasksViewModel(projectRepository!!, taskRepository!!, removedTasksListener!!) as T
+            return RemovedTasksViewModel(
+                projectRepository,
+                taskRepository,
+                taskListener
+            ) as T
         }
 
         if (modelClass.isAssignableFrom(ProjectViewModel::class.java)) {

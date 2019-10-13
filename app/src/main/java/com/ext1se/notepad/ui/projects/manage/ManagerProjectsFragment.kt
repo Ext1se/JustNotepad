@@ -8,6 +8,7 @@ import android.view.*
 import android.widget.Toast
 import com.ext1se.notepad.R
 import com.ext1se.notepad.common.BaseFragmentOptionsMenu
+import com.ext1se.notepad.common.ProjectListener
 import com.ext1se.notepad.data.ProjectRepository
 import com.ext1se.notepad.data.model.Project
 import com.ext1se.notepad.databinding.ManagerProjectsBinding
@@ -17,8 +18,7 @@ import com.ext1se.notepad.ui.ThemeState
 import com.ext1se.notepad.ui.projects.ProjectFragment
 import com.ext1se.notepad.ui.projects.favorite.FavoriteProjectsFragment
 
-class ManagerProjectsFragment : BaseFragmentOptionsMenu(),
-    ManagerProjectsAdapter.OnProjectListener {
+class ManagerProjectsFragment : BaseFragmentOptionsMenu(), ProjectListener {
 
     @Inject
     lateinit var projectRepository: ProjectRepository
@@ -34,7 +34,7 @@ class ManagerProjectsFragment : BaseFragmentOptionsMenu(),
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = ManagerProjectsBinding.inflate(inflater, container, false)
         projectsViewModel.setProjects(dataObserver.getProjects())
-        projectsViewModel.onProjectListener = this
+        projectsViewModel.projectListener = this
         binding.vm = projectsViewModel
         binding.lifecycleOwner = this
         return binding.root
@@ -53,7 +53,7 @@ class ManagerProjectsFragment : BaseFragmentOptionsMenu(),
         activityObserver.updateNavigation(dataObserver.getSelectedProject(), true)
     }
 
-    override fun onClickProject(project: Project, position: Int) {
+    override fun selectProject(project: Project, position: Int) {
         dataObserver.setSelectedProject(project)
         activityObserver.updateFragment(FavoriteProjectsFragment.newInstance(), true, true)
     }

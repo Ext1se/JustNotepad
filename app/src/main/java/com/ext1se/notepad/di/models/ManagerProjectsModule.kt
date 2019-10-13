@@ -1,5 +1,6 @@
 package com.ext1se.notepad.di.models
 
+import com.ext1se.notepad.common.ProjectListener
 import com.ext1se.notepad.di.providers.ManagerProjectsViewModelProvider
 import com.ext1se.notepad.ui.projects.manage.ManagerProjectsAdapter
 import com.ext1se.notepad.ui.projects.manage.ManagerProjectsFragment
@@ -10,11 +11,11 @@ class ManagerProjectsModule(private val fragment: ManagerProjectsFragment) : Mod
 
     init {
         bind(ManagerProjectsFragment::class.java).toInstance(provideManagerProjectsFragment())
-        bind(ManagerProjectsAdapter.OnProjectListener::class.java).toInstance(provideProjectsListener())
+        bind(ProjectListener::class.java).toInstance(provideProjectsListener())
         bind(ManagerProjectsViewModel::class.java).toProvider(ManagerProjectsViewModelProvider::class.java).providesSingletonInScope()
     }
 
     fun provideManagerProjectsFragment(): ManagerProjectsFragment = fragment
 
-    fun provideProjectsListener(): ManagerProjectsAdapter.OnProjectListener = fragment
+    fun provideProjectsListener(): ProjectListener = fragment
 }

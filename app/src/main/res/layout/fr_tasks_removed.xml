@@ -19,7 +19,7 @@
             tools:listitem="@layout/item_task_removed"
             tools:background="@android:color/black"
             app:data="@{vm.tasks}"
-            app:clickHandler="@{vm.onTaskListener}">
+            app:removedTaskListener="@{vm.taskListener}">
     </androidx.recyclerview.widget.RecyclerView>
 
 </layout>

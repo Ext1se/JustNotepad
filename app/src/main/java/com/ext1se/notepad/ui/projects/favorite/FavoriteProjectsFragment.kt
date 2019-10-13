@@ -3,30 +3,34 @@ package com.ext1se.notepad.ui.projects.favorite
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
-import toothpick.Toothpick
-import javax.inject.Inject
-import android.view.*
+import android.view.LayoutInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import com.ext1se.dialog.color_dialog.ColorHelper
 import com.ext1se.notepad.R
+import com.ext1se.notepad.common.BaseFragmentOptionsMenu
+import com.ext1se.notepad.common.ProjectListener
+import com.ext1se.notepad.common.TaskListener
 import com.ext1se.notepad.data.ProjectRepository
 import com.ext1se.notepad.data.TaskRepository
 import com.ext1se.notepad.data.model.Project
 import com.ext1se.notepad.data.model.Task
 import com.ext1se.notepad.databinding.FavoriteProjectsBinding
-import com.ext1se.notepad.ui.tasks.TaskFragment
-import com.ext1se.notepad.ui.tasks.TasksAdapter
-import com.ext1se.notepad.utils.CustomFactoryFavoriteProjects
-import com.google.android.material.snackbar.Snackbar
-import com.ext1se.notepad.common.BaseFragmentOptionsMenu
 import com.ext1se.notepad.di.DI
 import com.ext1se.notepad.di.models.FavoriteProjectsModule
 import com.ext1se.notepad.ui.ThemeState
 import com.ext1se.notepad.ui.projects.ProjectFragment
+import com.ext1se.notepad.ui.tasks.TaskFragment
+import com.ext1se.notepad.utils.CustomFactory
+import com.google.android.material.snackbar.Snackbar
+import toothpick.Toothpick
+import javax.inject.Inject
 
 class FavoriteProjectsFragment : BaseFragmentOptionsMenu(),
-    FavoriteProjectsAdapter.OnProjectListener,
-    TasksAdapter.OnTaskListener {
+    ProjectListener,
+    TaskListener {
 
     @Inject
     lateinit var projectRepository: ProjectRepository
@@ -41,16 +45,10 @@ class FavoriteProjectsFragment : BaseFragmentOptionsMenu(),
         fun newInstance() = FavoriteProjectsFragment()
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        val factory = CustomFactoryFavoriteProjects(projectRepository, taskRepository, this, this)
-        favoriteProjectsViewModel = ViewModelProviders.of(this, factory).get(FavoriteProjectsViewModel::class.java)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FavoriteProjectsBinding.inflate(inflater, container, false)
-        favoriteProjectsViewModel.onProjectListener = this
-        favoriteProjectsViewModel.onTaskListener = this
+        favoriteProjectsViewModel.projectListener = this
+        favoriteProjectsViewModel.taskListener = this
         favoriteProjectsViewModel.setSelectedProject(dataObserver.getSelectedProject())
         binding.vm = favoriteProjectsViewModel
         binding.lifecycleOwner = this
@@ -76,21 +74,25 @@ class FavoriteProjectsFragment : BaseFragmentOptionsMenu(),
         activityObserver.updateNavigation(dataObserver.getSelectedProject(), true)
     }
 
-    override fun onClickProject(project: Project, position: Int) {
+    override fun selectProject(project: Project, position: Int) {
         favoriteProjectsViewModel.setSelectedProject(project)
         if (dataObserver.getSelectedProject() != project) {
-            //favoriteProjectsViewModel.setSelectedProject(project)
             dataObserver.setSelectedProject(project)
             activityObserver.updateTheme(project)
         }
     }
 
-    override fun onClickTask(task: Task, position: Int) {
+    override fun selectTask(task: Task, position: Int) {
         val copyTask = taskRepository.getCopyObject(task)
         activityObserver.updateFragment(TaskFragment.newInstance(copyTask), false, true)
     }
 
-    override fun onSwipeTask(task: Task, position: Int, onRestoreTaskListener: TasksAdapter.OnRestoreTaskListener) {
+    override fun swipeTask(
+        task: Task,
+        position: Int,
+        direction: Int,
+        callback: TaskListener.RestoreTaskListener?
+    ) {
         val snackBar = Snackbar.make(binding.snackbarCoordinator, R.string.task_deleted, Snackbar.LENGTH_LONG)
         val colorItem = ColorHelper.getColor(context, dataObserver.getSelectedProject().idColorTheme)
         snackBar.setBackgroundTint(colorItem.primaryColor)
@@ -98,7 +100,7 @@ class FavoriteProjectsFragment : BaseFragmentOptionsMenu(),
         snackBar.setActionTextColor(Color.WHITE)
         snackBar.setAction(R.string.task_restore, {
             taskRepository.setStateRemoved(task, false)
-            onRestoreTaskListener.onRestoreItem(task, position)
+            callback?.restoreTask(task, position)
         })
         snackBar.show()
         taskRepository.setStateRemoved(task, true)

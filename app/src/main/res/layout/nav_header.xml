@@ -55,7 +55,7 @@
                 tools:listitem="@layout/item_project"
                 tools:itemCount="6"
                 app:data="@{vm.projects}"
-                app:clickHandler="@{vm.onProjectListener}"
+                app:menuProjectListener="@{vm.projectListener}"
                 app:isShowing="@{vm.isShowingList}"
         />
 

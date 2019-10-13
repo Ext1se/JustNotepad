@@ -4,9 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ext1se.notepad.R
+import com.ext1se.notepad.common.ProjectListener
 import com.ext1se.notepad.data.model.Project
 
-class FavoriteProjectsAdapter(private val projects: List<Project>, private val listener: OnProjectListener) :
+class FavoriteProjectsAdapter(private val projects: List<Project>, private val listener: ProjectListener) :
     RecyclerView.Adapter<FavoriteProjectViewHolder>() {
 
     private var selectedPosition: Int = -1
@@ -46,9 +47,5 @@ class FavoriteProjectsAdapter(private val projects: List<Project>, private val l
         selectedPosition = position
         notifyItemChanged(selectedPosition)
 
-    }
-
-    interface OnProjectListener {
-        fun onClickProject(project: Project, position: Int)
     }
 }

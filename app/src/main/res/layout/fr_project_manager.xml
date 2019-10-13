@@ -25,7 +25,7 @@
                 tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_project_full"
                 tools:itemCount="12"
-                app:clickHandler="@{vm.onProjectListener}"
+                app:manageProjectListener="@{vm.projectListener}"
                 app:data="@{vm.projects}"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

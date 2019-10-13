@@ -5,6 +5,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ext1se.dialog.common.RoundRectIconView
 import com.ext1se.notepad.R
+import com.ext1se.notepad.common.ProjectListener
 import com.ext1se.notepad.data.model.Project
 
 class ProjectViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -13,7 +14,7 @@ class ProjectViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val name: TextView = itemView.findViewById(R.id.tv_name)
     private val description: TextView = itemView.findViewById(R.id.tv_description)
 
-    fun bind(project: Project, listener: ProjectAdapter.OnProjectListener) {
+    fun bind(project: Project, listener: ProjectListener) {
         icon.setIconTheme(project.idColorTheme, project.idIcon)
         name.text = project.name
         if (!project.description.isNullOrBlank()) {
@@ -25,7 +26,7 @@ class ProjectViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             description.visibility = View.GONE
         }
         itemView.setOnClickListener {
-            listener.onClickProject(project)
+            listener.selectProject(project, adapterPosition)
         }
     }
 }

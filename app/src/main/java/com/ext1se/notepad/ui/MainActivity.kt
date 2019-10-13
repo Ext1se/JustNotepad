@@ -1,7 +1,6 @@
 package com.ext1se.notepad.ui
 
 import android.content.Context
-import android.content.res.Resources
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
@@ -16,24 +15,23 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProviders
 import com.ext1se.dialog.color_dialog.ColorHelper
-import com.ext1se.notepad.App
 import com.ext1se.notepad.R
 import com.ext1se.notepad.common.BaseActivity
+import com.ext1se.notepad.common.ProjectListener
 import com.ext1se.notepad.data.ProjectRepository
 import com.ext1se.notepad.data.model.Project
 import com.ext1se.notepad.databinding.DrawerHeaderBinding
 import com.ext1se.notepad.databinding.ProjectsBinding
 import com.ext1se.notepad.di.DI
+import com.ext1se.notepad.di.PREFERENCES_HELPER
 import com.ext1se.notepad.di.models.AppModule
-import com.ext1se.notepad.di.models.FavoriteProjectsModule
 import com.ext1se.notepad.di.models.ProjectsModule
 import com.ext1se.notepad.preferences.SharedPreferencesHelper
-import com.ext1se.notepad.ui.projects.favorite.FavoriteProjectsFragment
-import com.ext1se.notepad.ui.projects.ProjectAdapter
 import com.ext1se.notepad.ui.projects.ProjectFragment
+import com.ext1se.notepad.ui.projects.favorite.FavoriteProjectsFragment
 import com.ext1se.notepad.ui.projects.manage.ManagerProjectsFragment
 import com.ext1se.notepad.ui.tasks.RemovedTasksFragment
-import com.ext1se.notepad.utils.CustomFactoryProjects
+import com.ext1se.notepad.utils.CustomFactory
 import com.ext1se.notepad.utils.DatabaseUtils
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.nav_header.view.*
@@ -45,11 +43,11 @@ class MainActivity : BaseActivity(),
     DataObserver,
     ActivityObserver,
     NavigationView.OnNavigationItemSelectedListener,
-    ProjectAdapter.OnProjectListener {
+    ProjectListener {
 
     @Inject
     lateinit var projectRepository: ProjectRepository
-    @field:[Inject Named(AppModule.PREFERENCES_HELPER)]
+    @field:[Inject Named(PREFERENCES_HELPER)]
     lateinit var preferencesHelper: SharedPreferencesHelper
     @Inject
     lateinit var projectsViewModel: ProjectsViewModel
@@ -78,9 +76,9 @@ class MainActivity : BaseActivity(),
     }
 
     override fun setContentView() {
-        val factory = CustomFactoryProjects(projectRepository, preferencesHelper, this)
+        val factory = CustomFactory(preferencesHelper, projectRepository, this)
         projectsViewModel = ViewModelProviders.of(this, factory).get(ProjectsViewModel::class.java)
-        projectsViewModel.onProjectListener = this
+        projectsViewModel.projectListener = this
         binding = ProjectsBinding.inflate(layoutInflater)
         binding.vm = projectsViewModel
         binding.lifecycleOwner = this
@@ -257,7 +255,7 @@ class MainActivity : BaseActivity(),
         transaction.commit()
     }
 
-    override fun onClickProject(project: Project) {
+    override fun selectProject(project: Project, position: Int) {
         binding.drawerLayout.setDrawerListener(object : DrawerLayout.DrawerListener {
             override fun onDrawerStateChanged(newState: Int) {
             }
@@ -285,9 +283,9 @@ class MainActivity : BaseActivity(),
         var fragment: Fragment?
         fragment = supportFragmentManager.findFragmentById(R.id.container)
         if (fragment != null) {
-            if (fragment is FavoriteProjectsFragment) {
-                fragment as FavoriteProjectsFragment
-                fragment.onClickProject(project, -1)
+            if (fragment is ProjectListener) {
+                fragment as ProjectListener
+                fragment.selectProject(project, -1)
                 return
             }
         }

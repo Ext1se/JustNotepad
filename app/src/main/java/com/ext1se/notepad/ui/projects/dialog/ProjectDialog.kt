@@ -10,11 +10,11 @@ import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ext1se.notepad.R
+import com.ext1se.notepad.common.ProjectListener
 import com.ext1se.notepad.data.model.Project
 import com.ext1se.notepad.ui.projects.ProjectAdapter
 
-class ProjectDialog(private val projects: List<Project>) : DialogFragment(),
-    ProjectAdapter.OnProjectListener {
+class ProjectDialog(private val projects: List<Project>) : DialogFragment(), ProjectListener {
     private lateinit var contextTheme: Context
     private lateinit var maxDialogDimensions: IntArray
 
@@ -87,7 +87,7 @@ class ProjectDialog(private val projects: List<Project>) : DialogFragment(),
         }
     }
 
-    override fun onClickProject(project: Project) {
+    override fun selectProject(project: Project, position: Int) {
         try {
             (getCaller() as Callback).onProjectSelected(this, project)
         } catch (e: ClassCastException) {
