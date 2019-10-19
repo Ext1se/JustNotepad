@@ -46,6 +46,5 @@ class FavoriteProjectsAdapter(private val projects: List<Project>, private val l
         }
         selectedPosition = position
         notifyItemChanged(selectedPosition)
-
     }
 }

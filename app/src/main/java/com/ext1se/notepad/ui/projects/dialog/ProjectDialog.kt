@@ -48,7 +48,12 @@ class ProjectDialog(private val projects: List<Project>) : DialogFragment(), Pro
             val fgPadding = Rect()
             dialog.window!!.decorView.background.getPadding(fgPadding)
             dialog.window!!.setBackgroundDrawableResource(android.R.color.transparent)
-            dialog.window!!.decorView.setPadding(fgPadding.left, fgPadding.top, fgPadding.right, fgPadding.bottom)
+            dialog.window!!.decorView.setPadding(
+                fgPadding.left,
+                fgPadding.top,
+                fgPadding.right,
+                fgPadding.bottom
+            )
             val metrics = contextTheme.getResources().getDisplayMetrics()
             var height = metrics.heightPixels - fgPadding.top - fgPadding.bottom
             var width = metrics.widthPixels - fgPadding.top - fgPadding.bottom

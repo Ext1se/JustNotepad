@@ -1,13 +1,11 @@
 package com.ext1se.notepad.ui.projects.favorite
 
-import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProviders
 import com.ext1se.dialog.color_dialog.ColorHelper
 import com.ext1se.notepad.R
 import com.ext1se.notepad.common.BaseFragmentOptionsMenu
@@ -23,7 +21,6 @@ import com.ext1se.notepad.di.models.FavoriteProjectsModule
 import com.ext1se.notepad.ui.ThemeState
 import com.ext1se.notepad.ui.projects.ProjectFragment
 import com.ext1se.notepad.ui.tasks.TaskFragment
-import com.ext1se.notepad.utils.CustomFactory
 import com.google.android.material.snackbar.Snackbar
 import toothpick.Toothpick
 import javax.inject.Inject

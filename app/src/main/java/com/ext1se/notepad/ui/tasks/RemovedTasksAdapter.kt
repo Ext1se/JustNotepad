@@ -9,7 +9,7 @@ import com.ext1se.notepad.data.model.Task
 import com.ext1se.notepad.utils.ItemSwipeHelper
 
 class RemovedTasksAdapter(
-    private var tasks: MutableList<Task> = mutableListOf(),
+    private val tasks: MutableList<Task> = mutableListOf(),
     private val listener: TaskListener
 ) : RecyclerView.Adapter<RemovedTaskViewHolder>(),
     ItemSwipeHelper.ItemSwipeHelperAdapter {

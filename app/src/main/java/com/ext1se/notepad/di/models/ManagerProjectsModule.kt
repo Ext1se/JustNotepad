@@ -7,15 +7,14 @@ import com.ext1se.notepad.ui.projects.manage.ManagerProjectsFragment
 import com.ext1se.notepad.ui.projects.manage.ManagerProjectsViewModel
 import toothpick.config.Module
 
-class ManagerProjectsModule(private val fragment: ManagerProjectsFragment) : Module() {
+class ManagerProjectsModule(fragment: ManagerProjectsFragment) :
+    BaseFragmentModule<ManagerProjectsFragment>(fragment, ManagerProjectsFragment::class.java) {
 
     init {
-        bind(ManagerProjectsFragment::class.java).toInstance(provideManagerProjectsFragment())
         bind(ProjectListener::class.java).toInstance(provideProjectsListener())
-        bind(ManagerProjectsViewModel::class.java).toProvider(ManagerProjectsViewModelProvider::class.java).providesSingletonInScope()
+        bind(ManagerProjectsViewModel::class.java).toProvider(ManagerProjectsViewModelProvider::class.java)
+            .providesSingletonInScope()
     }
-
-    fun provideManagerProjectsFragment(): ManagerProjectsFragment = fragment
 
     fun provideProjectsListener(): ProjectListener = fragment
 }

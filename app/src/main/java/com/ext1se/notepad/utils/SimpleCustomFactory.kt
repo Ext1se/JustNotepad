@@ -15,7 +15,7 @@ import com.ext1se.notepad.ui.tasks.RemovedTasksViewModel
 import com.ext1se.notepad.ui.tasks.TaskViewModel
 import org.jetbrains.annotations.NotNull
 
-class CustomFactory1(
+class SimpleCustomFactory(
     private val preferencesHelper: SharedPreferencesHelper? = null,
     private val projectRepository: ProjectRepository? = null,
     private val taskRepository: TaskRepository? = null,
