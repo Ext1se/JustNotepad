@@ -42,8 +42,8 @@
     <string name="actoin_add">Add</string>
     <string name="action_save">Save</string>
     <string name="icon">Icon</string>
-    <string name="project_icon_advice">Press to select icon for project</string>
-    <string name="project_color_advice">Press to select color for project</string>
+    <string name="project_icon_advice">Select icon</string>
+    <string name="project_color_advice">Select color</string>
 
     <string name="toolbar_collapse">Press to collapse the projects list</string>
     <string name="toolbar_expand">Press to expand the projects list</string>

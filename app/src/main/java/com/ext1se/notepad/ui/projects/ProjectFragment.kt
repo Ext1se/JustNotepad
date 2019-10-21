@@ -70,14 +70,14 @@ class ProjectFragment : BaseFragmentOptionsMenu(), IconDialog.Callback, ColorDia
         /*(context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
             .toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);*/
 
-        binding.clIcon.setOnClickListener {
+        binding.llIcon.setOnClickListener {
             IconDialog()
                 .setSelectedIcon(projectViewModel.idIcon.value!!)
                 .setColor(projectViewModel.idColorTheme.value!!)
                 .show(childFragmentManager, "icon_dialog")
         }
 
-        binding.clColor.setOnClickListener {
+        binding.llColor.setOnClickListener {
             ColorDialog()
                 .setSelectedIcon(projectViewModel.idIcon.value!!)
                 .setColor(projectViewModel.idColorTheme.value!!)
@@ -96,6 +96,9 @@ class ProjectFragment : BaseFragmentOptionsMenu(), IconDialog.Callback, ColorDia
             activityObserver.updateTheme(projectViewModel.project.value, ThemeState.PROJECT_EDIT)
         } else {
             activityObserver.updateTheme(projectViewModel.project.value, ThemeState.PROJECT_CREATE)
+            binding.etTitle.requestFocus()
+            val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+            imm!!.showSoftInput(binding.etTitle, InputMethodManager.SHOW_IMPLICIT)
         }
     }
 
