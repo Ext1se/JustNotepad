@@ -24,32 +24,38 @@
         <item name="android:textSize">12sp</item>
     </style>
 
-    <public name="ItemCardStyle" type="style"/>
-    <style name="ItemCardStyle">
-        <item name="android:layout_marginTop">@dimen/card_margin_vertical</item>
-        <item name="android:layout_marginBottom">@dimen/card_margin_vertical</item>
-        <item name="android:layout_marginStart">@dimen/card_margin_horizontal</item>
-        <item name="android:layout_marginEnd">@dimen/card_margin_horizontal</item>
-        <item name="cardElevation">@dimen/item_card_elevation</item>
-        <item name="cardCornerRadius">@dimen/item_card_corner_radius</item>
-        <item name="cardBackgroundColor">@android:color/white</item>
-    </style>
-
     <public name="AttributeEditTextStyle" type="style"/>
     <style name="AttributeEditTextStyle">
         <item name="android:textColor">@color/colorDefault</item>
         <item name="android:paddingTop">6dp</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:layout_marginLeft">-4dp</item>
-        <item name="android:layout_marginRight">-4dp</item>
+   <!--     <item name="android:layout_marginLeft">-4dp</item>
+        <item name="android:layout_marginRight">-4dp</item>-->
+    </style>
+
+    <public name="CardViewStyle" type="style"/>
+    <style name="CardViewStyle" parent="CardView">
+        <item name="cardBackgroundColor">@android:color/white</item>
     </style>
 
     <public name="AttributeCardViewStyle" type="style"/>
-    <style name="AttributeCardViewStyle" parent="CardView">
+    <style name="AttributeCardViewStyle" parent="CardViewStyle">
+        <item name="android:layout_marginTop">@dimen/card_margin_vertical</item>
+        <item name="android:layout_marginBottom">@dimen/card_margin_vertical</item>
+        <item name="android:layout_marginStart">@dimen/card_margin_horizontal</item>
+        <item name="android:layout_marginEnd">@dimen/card_margin_horizontal</item>
+        <item name="cardElevation">@dimen/card_elevation</item>
+        <item name="cardCornerRadius">@dimen/card_corner_radius</item>
+    </style>
+
+    <public name="ItemCardStyle" type="style"/>
+    <style name="ItemCardStyle" parent="CardViewStyle">
+        <item name="android:layout_marginTop">@dimen/item_card_margin_vertical</item>
+        <item name="android:layout_marginBottom">@dimen/item_card_margin_vertical</item>
+        <item name="android:layout_marginStart">@dimen/item_card_margin_horizontal</item>
+        <item name="android:layout_marginEnd">@dimen/item_card_margin_horizontal</item>
         <item name="cardElevation">@dimen/item_card_elevation</item>
         <item name="cardCornerRadius">@dimen/item_card_corner_radius</item>
-        <item name="cardBackgroundColor">@android:color/white</item>
-        <item name="android:layout_margin">@dimen/item_card_margin</item>
     </style>
 
     <public name="AttributeItemStyle" type="style"/>

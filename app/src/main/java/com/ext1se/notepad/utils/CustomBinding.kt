@@ -1,6 +1,8 @@
 package com.ext1se.notepad.utils
 
 import android.content.res.ColorStateList
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.GridLayoutManager
@@ -9,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ext1se.dialog.color_dialog.ColorHelper
 import com.ext1se.dialog.icon_dialog.IconView
+import com.ext1se.notepad.R
 import com.ext1se.notepad.common.ProjectListener
 import com.ext1se.notepad.common.TaskListener
 import com.ext1se.notepad.data.model.Project
@@ -163,6 +166,18 @@ object CustomBinding {
     fun configureButton(button: FloatingActionButton, idTheme: Int) {
         val color = ColorHelper.getColor(button.context, idTheme).primaryColor
         button.setBackgroundTintList(ColorStateList.valueOf(color));
+    }
+
+    @JvmStatic
+    @BindingAdapter("bind:color")
+    fun configureBackgroundRecyclerView(recyclerView: RecyclerView, idTheme: Int) {
+        val color = ColorHelper.getColor(recyclerView.context, idTheme).primaryColor
+        val c = Color.argb(255, Color.red(color), Color.green(color), Color.blue(color))
+        recyclerView.setBackgroundColor(c)
+        /*val c1 = Color.argb(255, Color.red(color), Color.green(color), Color.blue(color))
+        val c2 = Color.argb(100, Color.red(color), Color.green(color), Color.blue(color))
+        val gradientDrawable = GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, intArrayOf(c1, c2))
+        recyclerView.setBackgroundDrawable(gradientDrawable)*/
     }
 
     @JvmStatic

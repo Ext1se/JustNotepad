@@ -63,7 +63,8 @@ class ItemSwipeHelper(
             rect.set(0f, 0f, 0f, 0f)
         }
         paint.alpha = alpha
-        val radius = resources.displayMetrics.density * 6
+        //val radius = resources.displayMetrics.density * 6
+        val radius = resources.getDimension(R.dimen.item_card_corner_radius)
         canvas.drawRoundRect(rect, radius, radius, paint)
     }
 }

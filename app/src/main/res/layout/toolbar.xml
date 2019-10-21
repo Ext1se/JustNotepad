@@ -15,6 +15,7 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             tools:title="Работа"
             tools:subtitle="Описание проекта"
-            tools:navigationIcon="@drawable/ic_ok"/>
+            tools:navigationIcon="@drawable/ic_ok"
+            />
 
 </com.google.android.material.appbar.AppBarLayout>

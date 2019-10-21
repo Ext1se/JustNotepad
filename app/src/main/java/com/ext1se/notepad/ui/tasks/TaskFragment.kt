@@ -1,10 +1,7 @@
 package com.ext1se.notepad.ui.tasks
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.core.os.bundleOf
 import com.ext1se.notepad.R
 import com.ext1se.notepad.common.BaseFragmentOptionsMenu
@@ -19,6 +16,10 @@ import com.ext1se.notepad.ui.projects.dialog.ProjectDialog
 import kotlinx.android.synthetic.main.fr_task.*
 import toothpick.Toothpick
 import javax.inject.Inject
+import android.content.Context
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
+
 
 class TaskFragment : BaseFragmentOptionsMenu(), ProjectDialog.Callback {
 
@@ -49,7 +50,11 @@ class TaskFragment : BaseFragmentOptionsMenu(), ProjectDialog.Callback {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         binding = TaskBinding.inflate(inflater, container, false)
         taskViewModel.setProject(dataObserver.getSelectedProject())
         taskViewModel.setTask(selectedTask)
@@ -73,6 +78,19 @@ class TaskFragment : BaseFragmentOptionsMenu(), ProjectDialog.Callback {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         activityObserver.updateNavigation(dataObserver.getSelectedProject(), false)
+        if (binding.etTitle.text.isNullOrEmpty()) {
+            openKeyboard(binding.etTitle)
+        } else {
+            if (binding.etDescription.text.isNullOrEmpty()) {
+                openKeyboard(binding.etDescription)
+            }
+        }
+    }
+
+    private fun openKeyboard(editText: EditText) {
+        editText.requestFocus()
+        val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+        imm!!.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT)
     }
 
     private fun updateTask() {

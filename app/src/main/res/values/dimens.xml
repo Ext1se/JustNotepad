@@ -19,7 +19,7 @@
     <dimen name="bottom_content_margin">6dp</dimen>
     <dimen name="icon_standard_size">24dp</dimen>
     <dimen name="attribute_icon_size">24dp</dimen>
-    <dimen name="attribute_padding">12dp</dimen>
+    <dimen name="attribute_padding">10dp</dimen>
     <dimen name="attribute_padding_half">6dp</dimen>
     <dimen name="middle_icon_size">32dp</dimen>
     <dimen name="project_action_width">36dp</dimen>
