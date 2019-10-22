@@ -26,9 +26,7 @@ abstract class BaseActivity : AppCompatActivity(), DependenceListener {
 
     override fun onBackPressed() {
         val count = supportFragmentManager.backStackEntryCount
-        if (count == 0) {
-            finish()
-        } else if (supportFragmentManager.backStackEntryCount > 0) {
+        if (supportFragmentManager.backStackEntryCount > 0) {
             supportFragmentManager.popBackStack();
         } else {
             super.onBackPressed();

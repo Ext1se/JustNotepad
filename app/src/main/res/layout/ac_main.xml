@@ -31,8 +31,8 @@
                 android:fitsSystemWindows="false"
                 app:itemIconPadding="16dp"
                 app:itemIconSize="24dp"
-                app:itemTextColor="@color/colorDefault"
-                app:itemIconTint="@color/colorDefault"
+                app:itemTextColor="@color/colorDefaultLight"
+                app:itemIconTint="@color/colorDefaultLight"
                 app:headerLayout="@layout/nav_header"
                 app:menu="@menu/menu_drawer">
 

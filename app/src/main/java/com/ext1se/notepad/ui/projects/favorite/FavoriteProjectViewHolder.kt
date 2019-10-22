@@ -32,7 +32,7 @@ class FavoriteProjectViewHolder(itemView: View) : RecyclerView.ViewHolder(itemVi
             setIconColor(colorItem.primaryColor)
             name.setTextColor(colorItem.primaryColor)
         } else {
-            val color = itemView.context.resources.getColor(R.color.colorDefault)
+            val color = itemView.context.resources.getColor(R.color.colorDefaultLight)
             setIconColor(color)
             name.setTextColor(color)
         }

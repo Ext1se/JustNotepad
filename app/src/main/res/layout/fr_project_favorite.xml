@@ -34,7 +34,7 @@
                 android:id="@+id/line"
                 android:layout_width="match_parent"
                 android:layout_height="0.6dp"
-                android:background="@color/colorDefault"
+                android:background="@color/colorDefaultLight"
                 app:layout_constraintBottom_toTopOf="@+id/rv_projects"
                 app:layout_constraintTop_toBottomOf="@+id/rv_tasks"></View>
 

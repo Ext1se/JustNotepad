@@ -7,8 +7,9 @@
     <color name="colorDefaultPrimary">@color/blackPrimary</color>
     <color name="colorDefaultPrimaryDark">@color/blackDark</color>
 
-    <color name="colorBold">#505050</color>
-    <color name="colorDefault">#888</color>
+    <color name="colorBold">#333</color>
+    <color name="colorDefault">#555</color>
+    <color name="colorDefaultLight">#777</color>
     <color name="colorDisabled">#bbb</color>
     <color name="colorLine">#ddd</color>
 

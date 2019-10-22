@@ -24,13 +24,16 @@
         <item name="android:textSize">12sp</item>
     </style>
 
-    <public name="AttributeEditTextStyle" type="style"/>
-    <style name="AttributeEditTextStyle">
-        <item name="android:textColor">@color/colorDefault</item>
-        <item name="android:paddingTop">6dp</item>
+    <public name="BaseTextStyle" type="style"/>
+    <style name="BaseTextStyle">
         <item name="android:textSize">14sp</item>
-   <!--     <item name="android:layout_marginLeft">-4dp</item>
-        <item name="android:layout_marginRight">-4dp</item>-->
+        <item name="android:textColor">@color/colorDefault</item>
+    </style>
+
+    <public name="AttributeEditTextStyle" type="style"/>
+    <style name="AttributeEditTextStyle" parent="BaseTextStyle">
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
     <public name="CardViewStyle" type="style"/>
@@ -68,16 +71,16 @@
     </style>
 
     <public name="AttributeTitleStyle" type="style"/>
-    <style name="AttributeTitleStyle">
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/colorDefault</item>
+    <style name="AttributeTitleStyle" parent="BaseTextStyle">
+
     </style>
 
     <public name="ProjectTextStyle" type="style"/>
-    <style name="ProjectTextStyle">
+    <style name="ProjectTextStyle" parent="BaseTextStyle">
         <item name="android:layout_marginStart">8dp</item>
         <item name="android:lines">1</item>
         <item name="android:maxLines">1</item>
         <item name="android:ellipsize">end</item>
+        <item name="android:textColor">@color/colorDefault</item>
     </style>
 </resources>

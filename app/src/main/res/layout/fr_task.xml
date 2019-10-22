@@ -68,10 +68,10 @@
                                     style="@style/AttributeTitleStyle"/>
 
                             <TextView
+                                    style="@style/BaseTextStyle"
                                     android:id="@+id/tv_project_title"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textColor="@color/colorDefault"
                                     android:text="@{vm.selectedProject.name}"
                                     tools:text="Работа"/>
 
@@ -95,9 +95,6 @@
                                 android:paddingBottom="@dimen/attribute_padding"
                                 android:paddingStart="16dp"
                                 android:paddingEnd="16dp"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toEndOf="@+id/icon_title"
                                 android:orientation="vertical">
 
                             <EditText

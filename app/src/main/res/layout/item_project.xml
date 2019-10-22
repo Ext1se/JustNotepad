@@ -47,8 +47,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/ProjectTextStyle"
-                    tools:text="Рутина"
-                    android:textColor="@color/colorBold"/>
+                    tools:text="Рутина" />
 
             <TextView
                     android:id="@+id/tv_description"

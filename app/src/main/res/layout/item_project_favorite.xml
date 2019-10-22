@@ -14,7 +14,7 @@
             android:id="@+id/icon"
             android:layout_width="@dimen/item_project_icon_size"
             android:layout_height="@dimen/item_project_icon_size"
-            app:tint="@color/colorDefault"
+            app:tint="@color/colorDefaultLight"
             tools:src="@drawable/ic_ok"/>
 
     <TextView

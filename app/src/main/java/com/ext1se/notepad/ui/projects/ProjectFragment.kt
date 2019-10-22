@@ -123,8 +123,8 @@ class ProjectFragment : BaseFragmentOptionsMenu(), IconDialog.Callback, ColorDia
             dataObserver.updateProject(newProject)
             selectedProject = null
         }
-        projectViewModel.project.value = null
         activityObserver.updateFragment(FavoriteProjectsFragment.newInstance(), true, false)
+        //projectViewModel.project.value = null
     }
 
     override fun onItemDialogSelected(dialog: IconDialog?, icon: IconItem) {

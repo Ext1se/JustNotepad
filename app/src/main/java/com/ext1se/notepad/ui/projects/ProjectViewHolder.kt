@@ -21,8 +21,6 @@ class ProjectViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             description.text = project.description
             description.visibility = View.VISIBLE
         } else {
-            description.setTextColor(itemView.context.resources.getColor(R.color.colorDisabled))
-            description.text = itemView.context.resources.getString(R.string.description_empty)
             description.visibility = View.GONE
         }
         itemView.setOnClickListener {

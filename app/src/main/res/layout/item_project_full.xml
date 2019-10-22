@@ -29,7 +29,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_margin="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
                 app:layout_constraintTop_toTopOf="parent"
@@ -38,16 +41,18 @@
                 app:layout_constraintStart_toEndOf="@+id/icon">
 
             <TextView
+                    style="@style/BaseTextStyle"
                     android:id="@+id/tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorBold"
                     tools:text="Name of project"/>
 
             <TextView
+                    style="@style/BaseTextStyle"
                     android:id="@+id/tv_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorDefaultLight"
                     tools:text="Description of task. Description of task.
                     Description of task. Description of task."/>
         </LinearLayout>

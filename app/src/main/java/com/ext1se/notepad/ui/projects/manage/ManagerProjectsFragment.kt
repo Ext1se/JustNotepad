@@ -55,7 +55,7 @@ class ManagerProjectsFragment : BaseFragmentOptionsMenu(), ProjectListener {
 
     override fun selectProject(project: Project, position: Int) {
         dataObserver.setSelectedProject(project)
-        activityObserver.updateFragment(FavoriteProjectsFragment.newInstance(), true, true)
+        activityObserver.updateFragment(FavoriteProjectsFragment.newInstance(), true, false)
     }
 
     override fun setActiveProject(project: Project, position: Int) {

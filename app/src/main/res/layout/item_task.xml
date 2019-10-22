@@ -15,18 +15,18 @@
             android:padding="14dp">
 
         <TextView
+                style="@style/BaseTextStyle"
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:textColor="@color/colorDefault"
                 tools:text="Name of task"/>
 
         <TextView
+                style="@style/BaseTextStyle"
                 android:id="@+id/tv_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorDefault"
                 tools:text="Description of task"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

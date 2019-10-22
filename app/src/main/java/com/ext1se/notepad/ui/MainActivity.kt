@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
@@ -12,6 +13,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProviders
 import com.ext1se.dialog.color_dialog.ColorHelper
@@ -126,9 +128,21 @@ class MainActivity : BaseActivity(),
                             updateFragment(FavoriteProjectsFragment.newInstance(), true, false)
                         }
                     }
-                    R.id.nav_projects -> updateFragment(ManagerProjectsFragment.newInstance(), true, false)
-                    R.id.nav_bucket -> updateFragment(RemovedTasksFragment.newInstance(), false, false)
-                    R.id.nav_create_project -> updateFragment(ProjectFragment.newInstance(), false, true)
+                    R.id.nav_projects -> updateFragment(
+                        ManagerProjectsFragment.newInstance(),
+                        true,
+                        false
+                    )
+                    R.id.nav_bucket -> updateFragment(
+                        RemovedTasksFragment.newInstance(),
+                        false,
+                        false
+                    )
+                    R.id.nav_create_project -> updateFragment(
+                        ProjectFragment.newInstance(),
+                        false,
+                        true
+                    )
                 }
             }
         })
@@ -146,7 +160,8 @@ class MainActivity : BaseActivity(),
         projectsViewModel.setSelectedProject(project)
     }
 
-    override fun getSelectedProject(): Project = projectsViewModel.selectedProject.value ?: Project()
+    override fun getSelectedProject(): Project =
+        projectsViewModel.selectedProject.value ?: Project()
 
     override fun addProject(project: Project) {
         projectsViewModel.addProject(project)
@@ -230,27 +245,43 @@ class MainActivity : BaseActivity(),
         }
     }
 
-    override fun updateFragment(fragment: Fragment, isCheckExisting: Boolean, isBackToStack: Boolean) {
+    override fun updateFragment(
+        fragment: Fragment,
+        isCheckExisting: Boolean,
+        isBackToStack: Boolean
+    ) {
         hideKeyboard()
         val currentFragment = supportFragmentManager.findFragmentById(R.id.container)
         if (currentFragment != null) {
-            if (currentFragment == fragment) {
+            if (currentFragment.javaClass.simpleName.equals(fragment.javaClass.simpleName)) {
                 return
             }
         }
-        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-        var replaceFragment: Fragment?
-        if (isCheckExisting) {
-            replaceFragment = supportFragmentManager.findFragmentByTag(fragment.javaClass.simpleName)
-            if (replaceFragment == null) {
-                replaceFragment = fragment
-            }
-        } else {
-            replaceFragment = fragment
+
+        /*        val count = supportFragmentManager.backStackEntryCount
+        Log.d("MyLog", "count = " + count)
+        for (fr: Fragment in supportFragmentManager.fragments){
+            Log.d("MyLog", "from = " + fr.javaClass.simpleName)
         }
-        transaction.replace(R.id.container, replaceFragment, fragment.javaClass.simpleName)
+        for (i in 0 .. count - 1){
+            Log.d("MyLog", "back = " + supportFragmentManager.getBackStackEntryAt(i).name)
+        }*/
+
+        if (isCheckExisting) {
+            for (i in 0 .. supportFragmentManager.backStackEntryCount - 1){
+                if (fragment.javaClass.simpleName.equals(supportFragmentManager.getBackStackEntryAt(i).name)){
+                    supportFragmentManager.popBackStack(fragment.javaClass.simpleName, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                    return
+                }
+            }
+        }
+
+        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container, fragment, fragment.javaClass.simpleName)
         if (isBackToStack) {
-            transaction.addToBackStack(null)
+            currentFragment?.let{
+                transaction.addToBackStack(it.javaClass.simpleName)
+            }
         }
         transaction.commit()
     }
@@ -327,7 +358,7 @@ class MainActivity : BaseActivity(),
         }
     }
 
-    private fun hideKeyboard(){
+    private fun hideKeyboard() {
         val view = currentFocus
         view?.let { v ->
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
