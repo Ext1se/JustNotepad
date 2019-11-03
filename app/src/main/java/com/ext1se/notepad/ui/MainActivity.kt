@@ -186,14 +186,14 @@ class MainActivity : BaseActivity(),
                 ThemeState.PROJECT, ThemeState.PROJECT_CREATE, ThemeState.PROJECT_EDIT -> {
                     if (project != null) {
                         title = project.name
-                        subtitle = project.description
+                        //subtitle = project.description
                         val colorItem = ColorHelper.getColor(this, project.idColorTheme)
                         colorPrimary = colorItem.primaryColor
                         colorPrimaryDark = colorItem.primaryDarkColor
                     }
                     if (state == ThemeState.PROJECT_CREATE) {
                         title = getString(R.string.project_creating)
-                        subtitle = null
+                        //subtitle = null
                     }
 
                 }
@@ -211,7 +211,7 @@ class MainActivity : BaseActivity(),
                 }
             }
             it.title = title
-            it.subtitle = subtitle
+            //it.subtitle = subtitle
             it.setBackgroundDrawable(ColorDrawable(colorPrimary))
             setStatusbarColor(colorPrimaryDark)
             headerBinding.toolbar.setBackgroundColor(colorPrimary)
@@ -257,15 +257,6 @@ class MainActivity : BaseActivity(),
                 return
             }
         }
-
-        /*        val count = supportFragmentManager.backStackEntryCount
-        Log.d("MyLog", "count = " + count)
-        for (fr: Fragment in supportFragmentManager.fragments){
-            Log.d("MyLog", "from = " + fr.javaClass.simpleName)
-        }
-        for (i in 0 .. count - 1){
-            Log.d("MyLog", "back = " + supportFragmentManager.getBackStackEntryAt(i).name)
-        }*/
 
         if (isCheckExisting) {
             for (i in 0 .. supportFragmentManager.backStackEntryCount - 1){

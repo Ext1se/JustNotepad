@@ -32,7 +32,7 @@
     <string name="select_project">Select a project</string>
     <string name="description_empty">No description</string>
     <string name="project_title_empty_error">The field can not be empty</string>
-    <string name="task_deleted">The note is deleted</string>
+    <string name="task_deleted">This note is deleted</string>
     <string name="task_restore">Restore</string>
     <string name="project_deleting_warning">Do you want to delete the project with its contents without the possibility of recovery?</string>
     <string name="projects_max_count">The number of actual projects cannot be more than 5</string>

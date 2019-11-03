@@ -30,7 +30,7 @@ class App : Application() {
         if (BuildConfig.DEBUG) {
             configuration = Configuration.forDevelopment().preventMultipleRootScopes()
         } else {
-            configuration = Configuration.forProduction().disableReflection()
+            configuration = Configuration.forProduction()
         }
         Toothpick.setConfiguration(configuration)
 

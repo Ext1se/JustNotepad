@@ -15,4 +15,6 @@
 
     <color name="colorDelete">#ff1744</color>
     <color name="colorRestore">#76ff03</color>
+
+    <color name="ic_launcher_background">#BFE2DB</color>
 </resources>
