@@ -25,6 +25,8 @@
                 android:orientation="vertical"
                 app:taskListener="@{vm.taskListener}"
                 app:data="@{vm.tasks}"
+                android:paddingBottom="@dimen/recycler_view_bottom_padding"
+                android:clipToPadding="false"
                 app:layout_constraintBottom_toTopOf="@id/line"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:background="@android:color/holo_green_dark"

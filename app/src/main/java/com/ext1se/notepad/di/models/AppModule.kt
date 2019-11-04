@@ -4,12 +4,15 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import com.ext1se.notepad.App
 import com.ext1se.notepad.data.ProjectRepository
+import com.ext1se.notepad.data.RealmMigrations
+import com.ext1se.notepad.data.RealmSchemaMigration
 import com.ext1se.notepad.data.TaskRepository
 import com.ext1se.notepad.di.PREFERENCES_DEFAULT
 import com.ext1se.notepad.di.PREFERENCES_HELPER
 import com.ext1se.notepad.preferences.SharedPreferencesHelper
 import io.realm.Realm
 import io.realm.RealmConfiguration
+import io.realm.RealmMigration
 import toothpick.config.Module
 
 class AppModule(private val app: App) : Module() {
@@ -33,7 +36,7 @@ class AppModule(private val app: App) : Module() {
     private fun provideRealm(): Realm {
         Realm.init(app)
         val configuration = RealmConfiguration.Builder()
-            .schemaVersion(1).build()
+            .schemaVersion(2).migration(RealmSchemaMigration()).build()
         Realm.getDefaultConfiguration()
         return Realm.getInstance(configuration)
     }

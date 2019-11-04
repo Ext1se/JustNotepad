@@ -20,6 +20,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/white"
+                android:paddingBottom="@dimen/recycler_view_bottom_padding"
+                android:clipToPadding="false"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -37,7 +39,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:backgroundTint="@color/blackPrimary"
                 app:srcCompat="@drawable/ic_add"
-                android:visibility="gone"
         />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
