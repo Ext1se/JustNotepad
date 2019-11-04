@@ -10,7 +10,7 @@
     <color name="colorBold">#333</color>
     <color name="colorDefault">#555</color>
     <color name="colorDefaultLight">#777</color>
-    <color name="colorDisabled">#bbb</color>
+    <color name="colorDisabled">#999</color>
     <color name="colorLine">#ddd</color>
 
     <color name="colorDelete">#ff1744</color>

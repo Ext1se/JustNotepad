@@ -9,6 +9,7 @@ import com.ext1se.notepad.di.PREFERENCES_DEFAULT
 import com.ext1se.notepad.di.PREFERENCES_HELPER
 import com.ext1se.notepad.preferences.SharedPreferencesHelper
 import io.realm.Realm
+import io.realm.RealmConfiguration
 import toothpick.config.Module
 
 class AppModule(private val app: App) : Module() {
@@ -31,7 +32,10 @@ class AppModule(private val app: App) : Module() {
 
     private fun provideRealm(): Realm {
         Realm.init(app)
-        return Realm.getDefaultInstance()
+        val configuration = RealmConfiguration.Builder()
+            .schemaVersion(1).build()
+        Realm.getDefaultConfiguration()
+        return Realm.getInstance(configuration)
     }
 
     private fun provideProjectRepository() = ProjectRepository(realm)

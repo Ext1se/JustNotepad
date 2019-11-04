@@ -103,6 +103,12 @@ class FavoriteProjectsFragment : BaseFragmentOptionsMenu(),
         taskRepository.setStateRemoved(task, true)
     }
 
+    override fun setTaskState(task: Task, position: Int) {
+        taskRepository.setStateCompleted(task, !task.isCompleted)
+        //binding.rvTasks.adapter?.notifyItemChanged(position)
+
+    }
+
     override fun getMenuResource(): Int = R.menu.menu_edit
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

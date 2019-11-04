@@ -107,6 +107,7 @@ class TaskFragment : BaseFragmentOptionsMenu(), ProjectDialog.Callback {
             taskRepository.addObject(task)
         } else {
             task.id = selectedTask!!.id
+            task.isCompleted = selectedTask!!.isCompleted
             task.dateCreated = selectedTask!!.dateCreated
             task.dateUpdated = System.currentTimeMillis()
             taskRepository.updateObject(task)
