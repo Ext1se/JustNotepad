@@ -51,4 +51,6 @@
     <string name="create_project">Создание проекта</string>
     <string name="tasks">Заметки</string>
     <string name="bucket">Корзина</string>
+    <string name="completion">Завершение</string>
+    <string name="new_task">Новая задача</string>
 </resources>

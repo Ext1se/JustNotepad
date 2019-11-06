@@ -4,41 +4,36 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ext1se.notepad.R
-import com.ext1se.notepad.common.TaskListener
-import com.ext1se.notepad.data.model.Task
+import com.ext1se.notepad.common.SubTaskListener
+import com.ext1se.notepad.data.model.SubTask
+import com.ext1se.notepad.utils.ItemSwipeColorHelper
 import com.ext1se.notepad.utils.ItemSwipeHelper
 
 class SubTasksAdapter(
-    private var tasks: MutableList<Task> = mutableListOf(),
-    private val listener: TaskListener
-) : RecyclerView.Adapter<TaskViewHolder>(),
+    private var subTasks: MutableList<SubTask> = mutableListOf(),
+    private val listener: SubTaskListener
+) : RecyclerView.Adapter<SubTaskViewHolder>(),
     ItemSwipeHelper.ItemSwipeHelperAdapter {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_task, parent, false)
-        return TaskViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubTaskViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_subtask, parent, false)
+        return SubTaskViewHolder(view)
     }
 
-    override fun getItemCount(): Int = tasks.size
+    override fun getItemCount(): Int = subTasks.size
 
-    override fun onBindViewHolder(holder: TaskViewHolder, position: Int) = holder.bind(tasks[position], listener)
+    override fun onBindViewHolder(holder: SubTaskViewHolder, position: Int) = holder.bind(subTasks[position], listener)
 
-    fun update(tasks: MutableList<Task>) {
-        this.tasks = tasks
+    fun update(subTasks: MutableList<SubTask>) {
+        this.subTasks = subTasks
         notifyDataSetChanged()
     }
 
+    fun addNewItem(){
+
+    }
+
     override fun onItemDismiss(position: Int, direction: Int) {
-        val callback = object : TaskListener.RestoreTaskListener {
-            override fun restoreTask(task: Task, position: Int) {
-                tasks.getOrNull(0)?.let {
-                    if (task.idProject == it.idProject) {
-                        notifyItemInserted(position)
-                    }
-                }
-            }
-        }
-        listener.swipeTask(tasks[position], position, direction, callback)
-        notifyItemRemoved(position)
+        listener.swipeSubTask(subTasks[position], position, direction)
     }
 }

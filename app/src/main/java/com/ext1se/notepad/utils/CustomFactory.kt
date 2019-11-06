@@ -3,6 +3,7 @@ package com.ext1se.notepad.utils
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.ext1se.notepad.common.ProjectListener
+import com.ext1se.notepad.common.SubTaskListener
 import com.ext1se.notepad.common.TaskListener
 import com.ext1se.notepad.data.ProjectRepository
 import com.ext1se.notepad.data.TaskRepository
@@ -27,6 +28,7 @@ class CustomFactory() : ViewModelProvider.NewInstanceFactory() {
     private lateinit var taskRepository: TaskRepository
     private lateinit var projectListener: ProjectListener
     private lateinit var taskListener: TaskListener
+    private lateinit var subTaskListener: SubTaskListener
 
     constructor(
         preferencesHelper: SharedPreferencesHelper,
@@ -68,6 +70,12 @@ class CustomFactory() : ViewModelProvider.NewInstanceFactory() {
         this.taskListener = taskListener
     }
 
+    constructor(
+        subTaskListener: SubTaskListener
+    ) : this() {
+        this.subTaskListener = subTaskListener
+    }
+
     @NotNull
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ProjectsViewModel::class.java)) {
@@ -104,7 +112,7 @@ class CustomFactory() : ViewModelProvider.NewInstanceFactory() {
         }
 
         if (modelClass.isAssignableFrom(TaskViewModel::class.java)) {
-            return TaskViewModel() as T
+            return TaskViewModel(subTaskListener) as T
         }
 
         throw IllegalArgumentException("Unknown ViewModel class")

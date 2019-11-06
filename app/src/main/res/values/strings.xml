@@ -52,4 +52,6 @@
     <string name="create_project">Create project</string>
     <string name="tasks">Notes</string>
     <string name="bucket">Bucket</string>
+    <string name="completion">Completion</string>
+    <string name="new_task">New task</string>
 </resources>

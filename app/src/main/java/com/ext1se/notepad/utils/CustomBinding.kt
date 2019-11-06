@@ -2,24 +2,23 @@ package com.ext1se.notepad.utils
 
 import android.content.res.ColorStateList
 import android.graphics.Color
-import android.graphics.drawable.GradientDrawable
 import android.view.View
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.*
 import com.ext1se.dialog.color_dialog.ColorHelper
 import com.ext1se.dialog.icon_dialog.IconView
 import com.ext1se.notepad.R
 import com.ext1se.notepad.common.ProjectListener
+import com.ext1se.notepad.common.SubTaskListener
 import com.ext1se.notepad.common.TaskListener
 import com.ext1se.notepad.data.model.Project
+import com.ext1se.notepad.data.model.SubTask
 import com.ext1se.notepad.data.model.Task
 import com.ext1se.notepad.ui.projects.ProjectAdapter
 import com.ext1se.notepad.ui.projects.favorite.FavoriteProjectsAdapter
 import com.ext1se.notepad.ui.projects.manage.ManagerProjectsAdapter
 import com.ext1se.notepad.ui.tasks.RemovedTasksAdapter
+import com.ext1se.notepad.ui.tasks.SubTasksAdapter
 import com.ext1se.notepad.ui.tasks.TasksAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -80,9 +79,10 @@ object CustomBinding {
         if (recyclerView.adapter == null) {
             adapter = TasksAdapter(tasks, listener)
             recyclerView.adapter = adapter
-            recyclerView.layoutManager = LinearLayoutManager(recyclerView.context, RecyclerView.VERTICAL, false)
+            recyclerView.layoutManager =
+                LinearLayoutManager(recyclerView.context, RecyclerView.VERTICAL, false)
 
-            val callback = ItemSwipeHelper(adapter)
+            val callback = ItemSwipeColorHelper(adapter)
             val touchHelper = ItemTouchHelper(callback)
             touchHelper.attachToRecyclerView(recyclerView)
         } else {
@@ -92,7 +92,46 @@ object CustomBinding {
     }
 
     /**
-     * Configure RecyclerView for tasks of selected project
+     * Configure RecyclerView for subtasks of selected task
+     *
+     * @param subTasks is list of tasks
+     * @param listener is callback for click item's
+     */
+    @JvmStatic
+    @BindingAdapter("bind:data", "bind:subTaskListener")
+    fun configureSubTasksRecyclerView(
+        recyclerView: RecyclerView,
+        subTasks: MutableList<SubTask>?,
+        listener: SubTaskListener?
+    ) {
+        if (subTasks == null || listener == null) {
+            return
+        }
+        //recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, RecyclerView.VERTICAL))
+        val adapter: SubTasksAdapter
+        if (recyclerView.adapter == null) {
+            adapter = SubTasksAdapter(subTasks, listener)
+            recyclerView.adapter = adapter
+            recyclerView.layoutManager =
+                LinearLayoutManager(recyclerView.context, RecyclerView.VERTICAL, false)
+
+            val callback = ItemSwipeColorHelper(
+                adapter,
+                itemType = ItemType.DEFAULT_ITEM,
+                //swipeFlag = ItemTouchHelper.START or ItemTouchHelper.END,
+                idColorRight = R.color.colorLight,
+                idColorLeft = R.color.colorLight
+            )
+            val touchHelper = ItemTouchHelper(callback)
+            touchHelper.attachToRecyclerView(recyclerView)
+        } else {
+            adapter = recyclerView.adapter as SubTasksAdapter
+            adapter.update(subTasks)
+        }
+    }
+
+    /**
+     * Configure RecyclerView for removed tasks
      *
      * @param tasks is list of tasks
      * @param listener is callback for click item's
@@ -109,9 +148,11 @@ object CustomBinding {
         }
         val adapter: RemovedTasksAdapter = RemovedTasksAdapter(tasks, listener)
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(recyclerView.context, RecyclerView.VERTICAL, false)
+        recyclerView.layoutManager =
+            LinearLayoutManager(recyclerView.context, RecyclerView.VERTICAL, false)
 
-        val callback = ItemSwipeHelper(adapter, swipeFlag = ItemTouchHelper.START or ItemTouchHelper.END)
+        val callback =
+            ItemSwipeColorHelper(adapter, swipeFlag = ItemTouchHelper.START or ItemTouchHelper.END)
         val touchHelper = ItemTouchHelper(callback)
         touchHelper.attachToRecyclerView(recyclerView)
     }
@@ -134,9 +175,10 @@ object CustomBinding {
         }
         val adapter: ManagerProjectsAdapter = ManagerProjectsAdapter(projects, listener)
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(recyclerView.context, RecyclerView.VERTICAL, false)
+        recyclerView.layoutManager =
+            LinearLayoutManager(recyclerView.context, RecyclerView.VERTICAL, false)
 
-        val callback = ItemSwipeHelper(adapter, swipeFlag = ItemTouchHelper.START)
+        val callback = ItemSwipeColorHelper(adapter, swipeFlag = ItemTouchHelper.START)
         val touchHelper = ItemTouchHelper(callback)
         touchHelper.attachToRecyclerView(recyclerView)
     }
@@ -157,7 +199,8 @@ object CustomBinding {
         if (projects == null || listener == null) {
             return
         }
-        recyclerView.layoutManager = LinearLayoutManager(recyclerView.context, RecyclerView.VERTICAL, false)
+        recyclerView.layoutManager =
+            LinearLayoutManager(recyclerView.context, RecyclerView.VERTICAL, false)
         recyclerView.adapter = ProjectAdapter(projects, listener)
     }
 

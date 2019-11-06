@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ext1se.notepad.R
 import com.ext1se.notepad.common.TaskListener
 import com.ext1se.notepad.data.model.Task
+import com.ext1se.notepad.utils.ItemSwipeColorHelper
 import com.ext1se.notepad.utils.ItemSwipeHelper
 
 class RemovedTasksAdapter(

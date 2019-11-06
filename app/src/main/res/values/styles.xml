@@ -83,4 +83,10 @@
         <item name="android:ellipsize">end</item>
         <item name="android:textColor">@color/colorDefault</item>
     </style>
+
+    <style name="SwitchToolbarStyle" parent="AppTheme">
+        <item name="colorControlActivated">#fff</item>
+        <item name="colorSwitchThumbNormal">#e6e6e6</item>
+        <item name="android:colorForeground">#000</item>
+    </style>
 </resources>

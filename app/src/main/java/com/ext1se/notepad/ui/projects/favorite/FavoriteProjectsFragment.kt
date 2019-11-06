@@ -80,8 +80,9 @@ class FavoriteProjectsFragment : BaseFragmentOptionsMenu(),
     }
 
     override fun selectTask(task: Task, position: Int) {
-        val copyTask = taskRepository.getCopyObject(task)
-        activityObserver.updateFragment(TaskFragment.newInstance(copyTask), false, true)
+        //val copyTask = taskRepository.getCopyObject(task)
+        //activityObserver.updateFragment(TaskFragment.newInstance(copyTask), false, true)
+        activityObserver.updateFragment(TaskFragment.newInstance(task.id), false, true)
     }
 
     override fun swipeTask(

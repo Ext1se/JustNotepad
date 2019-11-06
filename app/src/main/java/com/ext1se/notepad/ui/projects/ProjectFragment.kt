@@ -140,7 +140,7 @@ class ProjectFragment : BaseFragmentOptionsMenu(), IconDialog.Callback, ColorDia
         }
     }
 
-    override fun getMenuResource(): Int = R.menu.menu_save
+    override fun getMenuResource(): Int = R.menu.menu_project
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val itemId = item.itemId

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ext1se.notepad.R
 import com.ext1se.notepad.common.ProjectListener
 import com.ext1se.notepad.data.model.Project
+import com.ext1se.notepad.utils.ItemSwipeColorHelper
 import com.ext1se.notepad.utils.ItemSwipeHelper
 
 class ManagerProjectsAdapter(private val projects: List<Project>, private val listener: ProjectListener) :

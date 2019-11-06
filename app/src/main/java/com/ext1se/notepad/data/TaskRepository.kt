@@ -1,5 +1,6 @@
 package com.ext1se.notepad.data
 
+import com.ext1se.notepad.data.model.SubTask
 import com.ext1se.notepad.data.model.Task
 import io.realm.Realm
 import io.realm.Sort
@@ -31,6 +32,14 @@ class TaskRepository(realm: Realm) : BaseRepository<Task>(realm, Task::class.jav
         with(realm){
             beginTransaction()
             task.isCompleted = isCompleted
+            commitTransaction()
+        }
+    }
+
+    fun addSubTask(task: Task, subTask: SubTask) {
+        with(realm) {
+            beginTransaction()
+            task.subTasks.add(subTask)
             commitTransaction()
         }
     }

@@ -15,7 +15,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="14dp"
+                android:paddingTop="@dimen/item_content_padding"
+                android:paddingBottom="@dimen/item_content_padding"
+                android:paddingStart="@dimen/item_content_padding"
+                android:paddingEnd="@dimen/item_content_padding_half"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/checkbox_completed"
@@ -34,15 +37,27 @@
                     style="@style/BaseTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="Description of task" />
-        </LinearLayout>
+                    tools:text="Description of task. Description of task. Description of task." />
 
+            <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="4dp"
+                    android:drawablePadding="4dp"
+                    android:textColor="@color/colorDefaultLight"
+                    android:drawableStart="@drawable/ic_alarm"
+                    android:visibility="gone"
+                    android:text="April 18, Monday, 12:00" />
+        </LinearLayout>
 
         <CheckBox
                 android:id="@+id/checkbox_completed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
+                android:paddingEnd="16dp"
                 app:backgroundTint="@color/colorDefault"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -59,7 +59,7 @@ class SimpleCustomFactory(
         }
 
         if (modelClass.isAssignableFrom(TaskViewModel::class.java)) {
-            return TaskViewModel() as T
+            //return TaskViewModel() as T
         }
 
         throw IllegalArgumentException("Unknown ViewModel class")

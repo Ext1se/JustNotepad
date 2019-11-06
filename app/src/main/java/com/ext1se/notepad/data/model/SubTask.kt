@@ -7,7 +7,7 @@ import io.realm.annotations.RealmField
 import java.io.Serializable
 import java.util.*
 
-open class SubTask : RealmObject() {
+open class SubTask : RealmObject(), Serializable {
     @PrimaryKey
     var id: String = UUID.randomUUID().toString();
     var name: String = ""

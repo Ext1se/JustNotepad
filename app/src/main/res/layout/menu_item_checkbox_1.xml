@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingEnd="4dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <CheckBox
+            android:id="@+id/checkbox_task"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:buttonTint="@android:color/white"
+            tools:buttonTint="@android:color/black">
+
+    </CheckBox>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12 Apr 2019, 12:00"
+            android:textColor="@android:color/white"
+            tools:textColor="@android:color/black"
+            android:textSize="8sp"
+            />
+</LinearLayout>
