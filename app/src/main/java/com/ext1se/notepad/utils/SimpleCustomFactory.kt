@@ -38,12 +38,12 @@ class SimpleCustomFactory(
         }
 
         if (modelClass.isAssignableFrom(FavoriteProjectsViewModel::class.java)) {
-            return FavoriteProjectsViewModel(
+            /*return FavoriteProjectsViewModel(
                 projectRepository!!,
                 taskRepository!!,
                 projectListener!!,
                 tasksListener!!
-            ) as T
+            ) as T*/
         }
 
         if (modelClass.isAssignableFrom(RemovedTasksViewModel::class.java)) {

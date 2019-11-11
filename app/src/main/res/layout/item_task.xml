@@ -5,24 +5,38 @@
         style="@style/ItemCardStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/item_content_padding"
+            android:paddingBottom="@dimen/item_content_padding">
 
         <LinearLayout
+                android:id="@+id/ll_task"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingTop="@dimen/item_content_padding"
-                android:paddingBottom="@dimen/item_content_padding"
                 android:paddingStart="@dimen/item_content_padding"
-                android:paddingEnd="@dimen/item_content_padding_half"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:paddingEnd="@dimen/item_content_padding"
+                app:layout_constraintEnd_toStartOf="@+id/frame_completed"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/checkbox_completed"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/rv_subtasks">
+
+            <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/checkbox_completed2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:paddingEnd="8dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/ll_task"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/ll_task" />
 
             <TextView
                     android:id="@+id/tv_title"
@@ -39,29 +53,57 @@
                     android:layout_height="wrap_content"
                     tools:text="Description of task. Description of task. Description of task." />
 
-            <TextView
+<!--            <TextView
                     android:id="@+id/tv_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:gravity="center_vertical"
                     android:layout_marginTop="4dp"
-                    android:drawablePadding="4dp"
-                    android:textColor="@color/colorDefaultLight"
                     android:drawableStart="@drawable/ic_alarm"
-                    android:visibility="gone"
-                    android:text="April 18, Monday, 12:00" />
+                    android:drawablePadding="4dp"
+                    android:gravity="center_vertical"
+                    android:text="April 18, Monday, 12:00"
+                    android:textColor="@color/colorDefaultLight"
+                    android:textSize="12sp"
+                    android:visibility="gone" />-->
+
         </LinearLayout>
 
-        <CheckBox
-                android:id="@+id/checkbox_completed"
+
+        <FrameLayout
+                android:id="@+id/frame_completed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingEnd="16dp"
-                app:backgroundTint="@color/colorDefault"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/ll_task"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/ll_task">
+
+            <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_completed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="10dp"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/checkbox_completed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="16dp"
+                    app:buttonTint="@color/colorDefault" />
+
+        </FrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_subtasks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                />
+                app:layout_constraintTop_toBottomOf="@+id/ll_task"
+                tools:listitem="@layout/item_subtask" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

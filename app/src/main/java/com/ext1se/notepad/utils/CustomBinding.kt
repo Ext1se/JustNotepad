@@ -63,21 +63,22 @@ object CustomBinding {
      * Configure RecyclerView for tasks of selected project
      *
      * @param tasks is list of tasks
-     * @param listener is callback for click item's
+     * @param taskListener is callback for click item's
      */
     @JvmStatic
-    @BindingAdapter("bind:data", "bind:taskListener")
+    @BindingAdapter("bind:data", "bind:taskListener", "bind:subTaskListener")
     fun configureTasksRecyclerView(
         recyclerView: RecyclerView,
         tasks: MutableList<Task>?, //RealmResult
-        listener: TaskListener?
-    ) {
-        if (tasks == null || listener == null) {
+        taskListener: TaskListener?,
+        subTaskListener: SubTaskListener?
+        ) {
+        if (tasks == null || taskListener == null || subTaskListener == null) {
             return
         }
         val adapter: TasksAdapter
         if (recyclerView.adapter == null) {
-            adapter = TasksAdapter(tasks, listener)
+            adapter = TasksAdapter(tasks, taskListener, subTaskListener)
             recyclerView.adapter = adapter
             recyclerView.layoutManager =
                 LinearLayoutManager(recyclerView.context, RecyclerView.VERTICAL, false)

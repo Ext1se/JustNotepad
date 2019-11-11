@@ -24,4 +24,7 @@ open class Task : RealmObject(), Serializable {
 
     @Ignore
     var project: Project? = null
+
+    @Ignore
+    var idColorTheme: Int? = null
 }

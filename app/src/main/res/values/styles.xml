@@ -86,7 +86,13 @@
 
     <style name="SwitchToolbarStyle" parent="AppTheme">
         <item name="colorControlActivated">#fff</item>
-        <item name="colorSwitchThumbNormal">#e6e6e6</item>
+        <item name="colorSwitchThumbNormal">#d7d7d7</item>
         <item name="android:colorForeground">#000</item>
+    </style>
+
+    <style name="SwitchTaskStyle" parent="AppTheme">
+        <item name="colorControlActivated">@color/colorDefault</item>
+        <item name="colorSwitchThumbNormal">#ddd</item>
+        <item name="android:colorForeground">#fff</item>
     </style>
 </resources>

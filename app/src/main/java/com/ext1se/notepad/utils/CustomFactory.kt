@@ -52,12 +52,14 @@ class CustomFactory() : ViewModelProvider.NewInstanceFactory() {
         projectRepository: ProjectRepository,
         projectListener: ProjectListener,
         taskRepository: TaskRepository,
-        taskListener: TaskListener
+        taskListener: TaskListener,
+        subTaskListener: SubTaskListener
     ) : this() {
         this.projectRepository = projectRepository
         this.projectListener = projectListener
         this.taskRepository = taskRepository
         this.taskListener = taskListener
+        this.subTaskListener = subTaskListener
     }
 
     constructor(
@@ -95,7 +97,8 @@ class CustomFactory() : ViewModelProvider.NewInstanceFactory() {
                 projectRepository,
                 taskRepository,
                 projectListener,
-                taskListener
+                taskListener,
+                subTaskListener
             ) as T
         }
 

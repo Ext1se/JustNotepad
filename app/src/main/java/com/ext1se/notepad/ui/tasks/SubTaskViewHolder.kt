@@ -2,6 +2,7 @@ package com.ext1se.notepad.ui.tasks
 
 import android.view.View
 import android.widget.CheckBox
+import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ext1se.notepad.R
@@ -10,7 +11,7 @@ import com.ext1se.notepad.data.model.SubTask
 
 class SubTaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    private val title: TextView = itemView.findViewById(R.id.tv_subtask)
+    private val title: EditText = itemView.findViewById(R.id.et_subtask)
     private val checkCompleted: CheckBox = itemView.findViewById(R.id.checkbox_completed)
 
     fun bind(subTask: SubTask, listener: SubTaskListener) {
@@ -24,7 +25,7 @@ class SubTaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             subTask.isCompleted = checkCompleted.isChecked
         }
 
-        title.text = subTask.name
+        title.setText(subTask.name)
         checkCompleted.isChecked = subTask.isCompleted
     }
 

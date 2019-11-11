@@ -2,6 +2,7 @@ package com.ext1se.notepad.di.providers
 
 import androidx.lifecycle.ViewModelProviders
 import com.ext1se.notepad.common.ProjectListener
+import com.ext1se.notepad.common.SubTaskListener
 import com.ext1se.notepad.common.TaskListener
 import com.ext1se.notepad.data.ProjectRepository
 import com.ext1se.notepad.data.TaskRepository
@@ -16,11 +17,12 @@ class FavoriteProjectsViewModelProvider @Inject constructor(
     val projectRepository: ProjectRepository,
     val taskRepository: TaskRepository,
     val projectListener: ProjectListener,
-    val taskListener: TaskListener
+    val taskListener: TaskListener,
+    val subTaskListener: SubTaskListener
 ) : Provider<FavoriteProjectsViewModel> {
 
     override fun get(): FavoriteProjectsViewModel {
-        val factory = CustomFactory(projectRepository, projectListener, taskRepository, taskListener)
+        val factory = CustomFactory(projectRepository, projectListener, taskRepository, taskListener, subTaskListener)
         return ViewModelProviders.of(fragment, factory).get(FavoriteProjectsViewModel::class.java)
     }
 }

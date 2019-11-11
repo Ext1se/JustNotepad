@@ -10,10 +10,12 @@ import com.ext1se.dialog.color_dialog.ColorHelper
 import com.ext1se.notepad.R
 import com.ext1se.notepad.common.BaseFragmentOptionsMenu
 import com.ext1se.notepad.common.ProjectListener
+import com.ext1se.notepad.common.SubTaskListener
 import com.ext1se.notepad.common.TaskListener
 import com.ext1se.notepad.data.ProjectRepository
 import com.ext1se.notepad.data.TaskRepository
 import com.ext1se.notepad.data.model.Project
+import com.ext1se.notepad.data.model.SubTask
 import com.ext1se.notepad.data.model.Task
 import com.ext1se.notepad.databinding.FavoriteProjectsBinding
 import com.ext1se.notepad.di.DI
@@ -27,7 +29,8 @@ import javax.inject.Inject
 
 class FavoriteProjectsFragment : BaseFragmentOptionsMenu(),
     ProjectListener,
-    TaskListener {
+    TaskListener,
+    SubTaskListener{
 
     @Inject
     lateinit var projectRepository: ProjectRepository
@@ -108,6 +111,11 @@ class FavoriteProjectsFragment : BaseFragmentOptionsMenu(),
         taskRepository.setStateCompleted(task, !task.isCompleted)
         //binding.rvTasks.adapter?.notifyItemChanged(position)
 
+    }
+
+    override fun setSubTaskState(subTask: SubTask, position: Int) {
+        super.setSubTaskState(subTask, position)
+        taskRepository.setStateCompleted(subTask, !subTask.isCompleted)
     }
 
     override fun getMenuResource(): Int = R.menu.menu_edit

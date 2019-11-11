@@ -1,6 +1,7 @@
 package com.ext1se.notepad.di.models
 
 import com.ext1se.notepad.common.ProjectListener
+import com.ext1se.notepad.common.SubTaskListener
 import com.ext1se.notepad.common.TaskListener
 import com.ext1se.notepad.di.providers.FavoriteProjectsViewModelProvider
 import com.ext1se.notepad.ui.projects.favorite.FavoriteProjectsFragment
@@ -12,11 +13,14 @@ class FavoriteProjectsModule(fragment: FavoriteProjectsFragment) :
     init {
         bind(ProjectListener::class.java).toInstance(provideProjectsListener())
         bind(TaskListener::class.java).toInstance(provideTasksListener())
+        bind(SubTaskListener::class.java).toInstance(provideSubTasksListener())
         bind(FavoriteProjectsViewModel::class.java).toProvider(FavoriteProjectsViewModelProvider::class.java).providesSingletonInScope()
     }
 
     fun provideProjectsListener(): ProjectListener = fragment
 
     fun provideTasksListener(): TaskListener = fragment
+
+    fun provideSubTasksListener(): SubTaskListener = fragment
 
 }

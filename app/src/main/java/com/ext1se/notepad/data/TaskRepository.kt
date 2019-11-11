@@ -36,6 +36,14 @@ class TaskRepository(realm: Realm) : BaseRepository<Task>(realm, Task::class.jav
         }
     }
 
+    fun setStateCompleted(subTask: SubTask, isCompleted: Boolean){
+        with(realm){
+            beginTransaction()
+            subTask.isCompleted = isCompleted
+            commitTransaction()
+        }
+    }
+
     fun addSubTask(task: Task, subTask: SubTask) {
         with(realm) {
             beginTransaction()

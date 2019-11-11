@@ -4,14 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ext1se.notepad.R
+import com.ext1se.notepad.common.SubTaskListener
 import com.ext1se.notepad.common.TaskListener
 import com.ext1se.notepad.data.model.Task
-import com.ext1se.notepad.utils.ItemSwipeColorHelper
 import com.ext1se.notepad.utils.ItemSwipeHelper
 
 class TasksAdapter(
     private var tasks: MutableList<Task> = mutableListOf(),
-    private val listener: TaskListener
+    private val taskListener: TaskListener,
+    private val subTaskListener: SubTaskListener
 ) : RecyclerView.Adapter<TaskViewHolder>(),
     ItemSwipeHelper.ItemSwipeHelperAdapter {
 
@@ -22,7 +23,7 @@ class TasksAdapter(
 
     override fun getItemCount(): Int = tasks.size
 
-    override fun onBindViewHolder(holder: TaskViewHolder, position: Int) = holder.bind(tasks[position], listener)
+    override fun onBindViewHolder(holder: TaskViewHolder, position: Int) = holder.bind(tasks[position], taskListener, subTaskListener)
 
     fun update(tasks: MutableList<Task>) {
         this.tasks = tasks
@@ -39,7 +40,7 @@ class TasksAdapter(
                 }
             }
         }
-        listener.swipeTask(tasks[position], position, direction, callback)
+        taskListener.swipeTask(tasks[position], position, direction, callback)
         notifyItemRemoved(position)
     }
 }

@@ -150,7 +150,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginTop="2dp"
-                                tools:listitem="@layout/item_subtask"
+                                tools:listitem="@layout/item_subtask_edit"
                                 android:overScrollMode="never"
                                 app:subTaskListener="@{vm.subTaskListener}"
                                 app:data="@{vm.subTasks}"
