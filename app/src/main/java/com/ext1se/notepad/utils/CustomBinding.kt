@@ -66,24 +66,29 @@ object CustomBinding {
      * @param taskListener is callback for click item's
      */
     @JvmStatic
-    @BindingAdapter("bind:data", "bind:taskListener", "bind:subTaskListener")
+    @BindingAdapter("bind:tasks", "bind:selectedProject", "bind:taskListener", "bind:subTaskListener")
     fun configureTasksRecyclerView(
         recyclerView: RecyclerView,
-        tasks: MutableList<Task>?, //RealmResult
+        realmTasks: MutableList<Task>?,
+        selectedProject: Project?,
         taskListener: TaskListener?,
         subTaskListener: SubTaskListener?
         ) {
-        if (tasks == null || taskListener == null || subTaskListener == null) {
+        if (realmTasks == null || taskListener == null || subTaskListener == null) {
             return
+        }
+        val tasks = realmTasks.toMutableList()
+        if (selectedProject != null){
+            tasks.forEach{it.project = selectedProject}
         }
         val adapter: TasksAdapter
         if (recyclerView.adapter == null) {
             adapter = TasksAdapter(tasks, taskListener, subTaskListener)
             recyclerView.adapter = adapter
-            recyclerView.layoutManager =
-                LinearLayoutManager(recyclerView.context, RecyclerView.VERTICAL, false)
-
-            val callback = ItemSwipeColorHelper(adapter)
+            recyclerView.layoutManager = LinearLayoutManager(recyclerView.context, RecyclerView.VERTICAL, false)
+            val callback = ItemSwipeColorHelper(adapter
+                //,dragFlag = ItemTouchHelper.UP or ItemTouchHelper.DOWN
+            )
             val touchHelper = ItemTouchHelper(callback)
             touchHelper.attachToRecyclerView(recyclerView)
         } else {

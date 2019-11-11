@@ -30,8 +30,7 @@ class FavoriteProjectsViewModel(
         if (selectedProject.value?.isValid == false || selectedProject.value != project) {
             selectedProject.value = project
             idColorTheme.value = project.idColorTheme
-            tasks.value = taskRepository.getTasksOfProject(project.id).toMutableList()
-            tasks.value?.forEach { it.project = selectedProject.value }
+            tasks.value = taskRepository.getTasksOfProject(project.id)
         }
     }
 }

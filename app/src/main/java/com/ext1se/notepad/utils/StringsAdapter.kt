@@ -1,4 +1,4 @@
-package com.ext1se.notepad.ui.tasks
+package com.ext1se.notepad.utils
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

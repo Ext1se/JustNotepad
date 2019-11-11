@@ -8,23 +8,22 @@ import com.ext1se.notepad.common.SubTaskListener
 import com.ext1se.notepad.common.TaskListener
 import com.ext1se.notepad.data.model.SubTask
 import com.ext1se.notepad.data.model.Task
-import com.ext1se.notepad.utils.ItemSwipeHelper
 
-class SubTasksInItemAdapter(
+class InlineSubTasksAdapter(
     private val task: Task,
     private var subTasks: MutableList<SubTask> = mutableListOf(),
     private val taskListener: TaskListener,
     private val subTaskListener: SubTaskListener
-) : RecyclerView.Adapter<SubTaskInItemViewHolder>() {
+) : RecyclerView.Adapter<InlineSubTaskViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubTaskInItemViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InlineSubTaskViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_subtask_1, parent, false)
-        return SubTaskInItemViewHolder(view)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_subtask_inline, parent, false)
+        return InlineSubTaskViewHolder(view)
     }
 
     override fun getItemCount(): Int = subTasks.size
 
-    override fun onBindViewHolder(holder: SubTaskInItemViewHolder, position: Int) =
+    override fun onBindViewHolder(holder: InlineSubTaskViewHolder, position: Int) =
         holder.bind(task, subTasks[position], taskListener, subTaskListener)
 }

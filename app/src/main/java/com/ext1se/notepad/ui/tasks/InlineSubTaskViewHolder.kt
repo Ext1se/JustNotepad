@@ -12,7 +12,7 @@ import com.ext1se.notepad.common.TaskListener
 import com.ext1se.notepad.data.model.SubTask
 import com.ext1se.notepad.data.model.Task
 
-class SubTaskInItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class InlineSubTaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     private val title: TextView = itemView.findViewById(R.id.tv_subtask)
     private val checkCompleted: CheckBox = itemView.findViewById(R.id.checkbox_completed)
@@ -30,17 +30,9 @@ class SubTaskInItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView
         }
         checkCompleted.setOnClickListener {
             subTaskListener.setSubTaskState(subTask, adapterPosition)
-            if (checkCompleted.isChecked) {
-                setStrikeFlag(true)
-            } else {
-                setStrikeFlag(false)
-            }
+            setStrikeFlag(checkCompleted.isChecked)
         }
-        if (subTask.isCompleted) {
-            setStrikeFlag(true)
-        } else {
-            setStrikeFlag(false)
-        }
+        setStrikeFlag(subTask.isCompleted)
     }
 
     private fun setStrikeFlag(isStriked: Boolean) {

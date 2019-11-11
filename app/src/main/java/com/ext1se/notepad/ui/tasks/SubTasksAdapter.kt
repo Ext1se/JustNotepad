@@ -15,7 +15,7 @@ class SubTasksAdapter(
     ItemSwipeHelper.ItemSwipeHelperAdapter {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubTaskViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_subtask_edit, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_subtask, parent, false)
         return SubTaskViewHolder(view)
     }
 
@@ -26,10 +26,6 @@ class SubTasksAdapter(
     fun update(subTasks: MutableList<SubTask>) {
         this.subTasks = subTasks
         notifyDataSetChanged()
-    }
-
-    fun addNewItem(){
-
     }
 
     override fun onItemDismiss(position: Int, direction: Int) {
