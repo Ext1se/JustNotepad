@@ -46,7 +46,6 @@ class TasksAdapter(
     }
 
     override fun onItemMove(fromPosition: Int, toPosition: Int) {
-        super.onItemMove(fromPosition, toPosition)
         if (fromPosition < toPosition) {
             for (i in fromPosition until toPosition) {
                 Collections.swap(tasks, i, i + 1)
@@ -57,5 +56,6 @@ class TasksAdapter(
             }
         }
         notifyItemMoved(fromPosition, toPosition)
+        //taskListener.moveTask(fromPosition, toPosition)
     }
 }

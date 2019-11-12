@@ -86,6 +86,10 @@ class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         rvSubTasks.layoutManager =
             LinearLayoutManager(itemView.context, RecyclerView.VERTICAL, false)
         rvSubTasks.adapter = adapter
+
+
+        //title.visibility = View.VISIBLE
+        //title.text = "position = " + task.position
     }
 
     private fun setCheckBox(isCompleted: Boolean) {

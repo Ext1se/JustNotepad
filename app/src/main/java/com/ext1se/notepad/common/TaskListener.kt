@@ -6,6 +6,7 @@ import com.ext1se.notepad.ui.tasks.TasksAdapter
 interface TaskListener {
     fun selectTask(task: Task, position: Int)
     fun swipeTask(task: Task, position: Int, direction: Int, callback: RestoreTaskListener?)
+    fun moveTask(fromPosition: Int, toPosition: Int){}
     fun setTaskState(task: Task, position: Int){}
 
     @FunctionalInterface

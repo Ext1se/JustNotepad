@@ -1,10 +1,18 @@
 package com.ext1se.notepad.data;
 
+import com.ext1se.notepad.data.model.Project;
+import com.ext1se.notepad.data.model.Task;
+
+import java.util.List;
+
 import io.realm.DynamicRealm;
+import io.realm.DynamicRealmObject;
 import io.realm.FieldAttribute;
 import io.realm.RealmMigration;
 import io.realm.RealmObjectSchema;
+import io.realm.RealmResults;
 import io.realm.RealmSchema;
+import io.realm.Sort;
 
 public class RealmSchemaMigration implements RealmMigration {
     @Override
@@ -26,7 +34,26 @@ public class RealmSchemaMigration implements RealmMigration {
                             .addRealmListField("subTasks", schema.get("SubTask"))
                             .addField("position", int.class);
                 }
-
+            }
+            case 2: {
+                RealmObjectSchema projectSchema = schema.get("Project");
+                if (projectSchema != null) {
+                    projectSchema.addField("position", int.class);
+                }
+                RealmResults<DynamicRealmObject> projects = realm.where("Project")
+                        .sort("dateCreated", Sort.DESCENDING).findAll();
+                for (int i = 0; i < projects.size(); i++) {
+                    DynamicRealmObject project = projects.get(i);
+                    project.setInt("position", i);
+                    RealmResults<DynamicRealmObject> tasks = realm.where("Task")
+                            .equalTo("id_project", project.getString("id"))
+                            .equalTo("isRemoved", false)
+                            .findAll().sort("dateCreated", Sort.DESCENDING);
+                    for (int j = 0; j < tasks.size(); j++) {
+                        DynamicRealmObject task = tasks.get(j);
+                        task.setInt("position", j);
+                    }
+                }
             }
         }
     }

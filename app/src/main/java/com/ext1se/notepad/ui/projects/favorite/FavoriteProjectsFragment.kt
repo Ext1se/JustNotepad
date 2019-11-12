@@ -96,21 +96,27 @@ class FavoriteProjectsFragment : BaseFragmentOptionsMenu(),
     ) {
         val snackBar = Snackbar.make(binding.snackbarCoordinator, R.string.task_deleted, Snackbar.LENGTH_LONG)
         val colorItem = ColorHelper.getColor(context, dataObserver.getSelectedProject().idColorTheme)
+        val taskRealm = taskRepository.getObject(task.id)
         snackBar.setBackgroundTint(colorItem.primaryColor)
         snackBar.setTextColor(Color.WHITE)
         snackBar.setActionTextColor(Color.WHITE)
         snackBar.setAction(R.string.task_restore, {
-            taskRepository.setStateRemoved(task, false)
-            callback?.restoreTask(task, position)
+            taskRepository.setStateRemoved(taskRealm!!, false)
+            callback?.restoreTask(taskRealm!!, position)
         })
         snackBar.show()
-        taskRepository.setStateRemoved(task, true)
+        taskRepository.setStateRemoved(taskRealm!!, true)
+    }
+
+    override fun moveTask(fromPosition: Int, toPosition: Int) {
+        favoriteProjectsViewModel.tasks.value?.let{
+            //taskRepository.updatePositions(it, fromPosition, toPosition)
+        }
     }
 
     override fun setTaskState(task: Task, position: Int) {
         taskRepository.setStateCompleted(task, !task.isCompleted)
         //binding.rvTasks.adapter?.notifyItemChanged(position)
-
     }
 
     override fun setSubTaskState(subTask: SubTask, position: Int) {

@@ -36,7 +36,7 @@ class AppModule(private val app: App) : Module() {
     private fun provideRealm(): Realm {
         Realm.init(app)
         val configuration = RealmConfiguration.Builder()
-            .schemaVersion(2).migration(RealmSchemaMigration()).build()
+            .schemaVersion(3).migration(RealmSchemaMigration()).build()
         Realm.getDefaultConfiguration()
         return Realm.getInstance(configuration)
     }

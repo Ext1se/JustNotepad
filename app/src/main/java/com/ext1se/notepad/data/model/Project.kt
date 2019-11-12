@@ -15,4 +15,5 @@ open class Project : RealmObject(), Serializable {
     var idColorTheme: Int = R.array.blackTheme
     var idIcon: Int = 2
     var isFavorite : Boolean = false
+    var position: Int = 0
 }

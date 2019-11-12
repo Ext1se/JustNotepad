@@ -87,7 +87,7 @@ object CustomBinding {
             recyclerView.adapter = adapter
             recyclerView.layoutManager = LinearLayoutManager(recyclerView.context, RecyclerView.VERTICAL, false)
             val callback = ItemSwipeColorHelper(adapter
-                    ,dragFlag = ItemTouchHelper.UP or ItemTouchHelper.DOWN
+                    //,dragFlag = ItemTouchHelper.UP or ItemTouchHelper.DOWN
             )
             val touchHelper = ItemTouchHelper(callback)
             touchHelper.attachToRecyclerView(recyclerView)

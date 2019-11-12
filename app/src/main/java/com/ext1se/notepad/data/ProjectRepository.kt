@@ -17,6 +17,7 @@ class ProjectRepository(realm: Realm) : BaseRepository<Project>(realm, Project::
 
     fun getProjectsSortedByDate(): MutableList<Project> {
         return realm.where(Project::class.java).findAll().sort("dateCreated")
+        //return realm.where(Project::class.java).findAll().sort("position")
     }
 
     fun setActive(project: Project, value: Boolean) {
