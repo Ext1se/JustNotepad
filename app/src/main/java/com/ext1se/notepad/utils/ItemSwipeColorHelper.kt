@@ -1,7 +1,6 @@
 package com.ext1se.notepad.utils
 
 import android.graphics.*
-import android.graphics.drawable.shapes.RoundRectShape
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.ext1se.notepad.R
@@ -12,7 +11,7 @@ enum class ItemType {
 }
 
 class ItemSwipeColorHelper(
-    touchHelperAdapter: ItemSwipeHelperAdapter,
+    touchHelperAdapter: OnItemHelperAdapter,
     swipeFlag: Int = ItemTouchHelper.START,
     dragFlag: Int = 0,
     private val itemType: ItemType = ItemType.CARD_ITEM,

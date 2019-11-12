@@ -8,13 +8,14 @@ import com.ext1se.notepad.common.SubTaskListener
 import com.ext1se.notepad.common.TaskListener
 import com.ext1se.notepad.data.model.Task
 import com.ext1se.notepad.utils.ItemSwipeHelper
+import java.util.Collections
 
 class TasksAdapter(
     private var tasks: MutableList<Task> = mutableListOf(),
     private val taskListener: TaskListener,
     private val subTaskListener: SubTaskListener
 ) : RecyclerView.Adapter<TaskViewHolder>(),
-    ItemSwipeHelper.ItemSwipeHelperAdapter {
+    ItemSwipeHelper.OnItemHelperAdapter {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_task, parent, false)
@@ -42,5 +43,19 @@ class TasksAdapter(
         }
         taskListener.swipeTask(tasks[position], position, direction, callback)
         notifyItemRemoved(position)
+    }
+
+    override fun onItemMove(fromPosition: Int, toPosition: Int) {
+        super.onItemMove(fromPosition, toPosition)
+        if (fromPosition < toPosition) {
+            for (i in fromPosition until toPosition) {
+                Collections.swap(tasks, i, i + 1)
+            }
+        } else {
+            for (i in fromPosition downTo toPosition + 1) {
+                Collections.swap(tasks, i, i - 1)
+            }
+        }
+        notifyItemMoved(fromPosition, toPosition)
     }
 }

@@ -178,7 +178,7 @@ class TaskFragment : BaseFragmentOptionsMenu(), SubTaskListener, ProjectDialog.C
             taskRepository.addObject(task)
         } else {
             task.id = selectedTask!!.id
-             task.dateCreated = selectedTask!!.dateCreated
+            task.dateCreated = selectedTask!!.dateCreated
             task.dateUpdated = System.currentTimeMillis()
             //task.subTasks = selectedTask!!.subTasks
             task.subTasks.addAll(subTasks)

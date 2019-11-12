@@ -1,19 +1,18 @@
 package com.ext1se.notepad.utils
 
-import android.graphics.*
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.ItemTouchHelper
-import com.ext1se.notepad.R
 
 
 open class ItemSwipeHelper(
-    protected val touchHelperAdapter: ItemSwipeHelperAdapter,
+    protected val touchHelperAdapter: OnItemHelperAdapter,
     protected val swipeFlag: Int = ItemTouchHelper.START,
     protected val dragFlag: Int = 0
 ) : ItemTouchHelper.Callback() {
 
-    interface ItemSwipeHelperAdapter {
+    interface OnItemHelperAdapter {
         fun onItemDismiss(position: Int, direction: Int)
+        fun onItemMove(fromPosition: Int, toPosition: Int){}
     }
 
     override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
@@ -25,7 +24,8 @@ open class ItemSwipeHelper(
         viewHolder: RecyclerView.ViewHolder,
         target: RecyclerView.ViewHolder
     ): Boolean {
-        return false
+        touchHelperAdapter.onItemMove(viewHolder.getAdapterPosition(), target.getAdapterPosition());
+        return true
     }
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {

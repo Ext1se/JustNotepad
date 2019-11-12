@@ -32,5 +32,6 @@ class SubTaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun updateSubTask(subTask: SubTask){
         subTask.isCompleted = checkCompleted.isChecked
         subTask.name = title.text.toString()
+        subTask.position = adapterPosition
     }
 }
