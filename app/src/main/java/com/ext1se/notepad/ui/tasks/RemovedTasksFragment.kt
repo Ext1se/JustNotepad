@@ -60,7 +60,8 @@ class RemovedTasksFragment : BaseFragment(), TaskListener {
             return
         }
         if (direction == ItemTouchHelper.END) {
-            taskRepository.setStateRemoved(task, false)
+            //taskRepository.setStateRemoved(task, false)
+            taskRepository.restoreTask(task)
             return
         }
     }

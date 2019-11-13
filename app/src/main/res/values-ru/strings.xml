@@ -53,4 +53,5 @@
     <string name="bucket">Корзина</string>
     <string name="completion">Завершение</string>
     <string name="new_task">Новая задача</string>
+    <string name="delete_all">Очистить корзину</string>
 </resources>

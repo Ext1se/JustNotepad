@@ -12,6 +12,7 @@ import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ext1se.dialog.color_dialog.ColorHelper
 import com.ext1se.notepad.common.SubTaskListener
+import com.ext1se.notepad.data.model.Project
 
 
 class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -24,13 +25,13 @@ class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val colorPassive: Int = itemView.resources.getColor(R.color.colorDefaultLight)
     private var colorActive: Int = colorPassive
 
-    fun bind(task: Task, taskListener: TaskListener, subTaskListener: SubTaskListener) {
+    fun bind(task: Task, project: Project?, taskListener: TaskListener, subTaskListener: SubTaskListener) {
 
         itemView.setOnClickListener {
             taskListener.selectTask(task, adapterPosition)
         }
 
-        task.project?.let {
+        project?.let {
             colorActive = ColorHelper.getColor(itemView.context, it.idColorTheme).lightColor
         }
 
@@ -88,8 +89,11 @@ class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         rvSubTasks.adapter = adapter
 
 
-        //title.visibility = View.VISIBLE
-        //title.text = "position = " + task.position
+ /*       description.visibility = View.VISIBLE
+        description.text = "position = " + task.position
+        if (!task.description.isNullOrBlank()){
+            description.text = description.text.toString() + "\n" + task.description
+        }*/
     }
 
     private fun setCheckBox(isCompleted: Boolean) {

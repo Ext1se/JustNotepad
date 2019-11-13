@@ -183,7 +183,12 @@ class TaskFragment : BaseFragmentOptionsMenu(), SubTaskListener, ProjectDialog.C
             task.dateUpdated = System.currentTimeMillis()
             //task.subTasks = selectedTask!!.subTasks
             task.subTasks.addAll(subTasks)
-            taskRepository.updateObject(task)
+            if (task.idProject == selectedTask!!.idProject) {
+                task.position = selectedTask!!.position
+                taskRepository.updateObject(task)
+            } else {
+                taskRepository.updateTask(task, selectedTask!!.idProject, selectedTask!!.position)
+            }
             selectedTask = null
         }
         //activity?.onBackPressed()

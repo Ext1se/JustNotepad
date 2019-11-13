@@ -6,12 +6,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ext1se.notepad.R
 import com.ext1se.notepad.common.SubTaskListener
 import com.ext1se.notepad.common.TaskListener
+import com.ext1se.notepad.data.model.Project
 import com.ext1se.notepad.data.model.Task
 import com.ext1se.notepad.utils.ItemSwipeHelper
 import java.util.Collections
 
 class TasksAdapter(
     private var tasks: MutableList<Task> = mutableListOf(),
+    private var project: Project?,
     private val taskListener: TaskListener,
     private val subTaskListener: SubTaskListener
 ) : RecyclerView.Adapter<TaskViewHolder>(),
@@ -24,11 +26,16 @@ class TasksAdapter(
 
     override fun getItemCount(): Int = tasks.size
 
-    override fun onBindViewHolder(holder: TaskViewHolder, position: Int) = holder.bind(tasks[position], taskListener, subTaskListener)
+    override fun onBindViewHolder(holder: TaskViewHolder, position: Int) =
+        holder.bind(tasks[position], project, taskListener, subTaskListener)
 
-    fun update(tasks: MutableList<Task>) {
+    fun updateTasks(tasks: MutableList<Task>) {
         this.tasks = tasks
         notifyDataSetChanged()
+    }
+
+    fun updateProject(project: Project?){
+        this.project = project
     }
 
     override fun onItemDismiss(position: Int, direction: Int) {
@@ -46,7 +53,7 @@ class TasksAdapter(
     }
 
     override fun onItemMove(fromPosition: Int, toPosition: Int) {
-        if (fromPosition < toPosition) {
+/*        if (fromPosition < toPosition) {
             for (i in fromPosition until toPosition) {
                 Collections.swap(tasks, i, i + 1)
             }
@@ -55,7 +62,8 @@ class TasksAdapter(
                 Collections.swap(tasks, i, i - 1)
             }
         }
+        notifyItemMoved(fromPosition, toPosition)*/
         notifyItemMoved(fromPosition, toPosition)
-        //taskListener.moveTask(fromPosition, toPosition)
+        taskListener.moveTask(fromPosition, toPosition)
     }
 }

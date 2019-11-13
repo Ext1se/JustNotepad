@@ -69,31 +69,28 @@ object CustomBinding {
     @BindingAdapter("bind:tasks", "bind:selectedProject", "bind:taskListener", "bind:subTaskListener")
     fun configureTasksRecyclerView(
         recyclerView: RecyclerView,
-        realmTasks: MutableList<Task>?,
+        tasks: MutableList<Task>?,
         selectedProject: Project?,
         taskListener: TaskListener?,
         subTaskListener: SubTaskListener?
         ) {
-        if (realmTasks == null || taskListener == null || subTaskListener == null) {
+        if (tasks == null || taskListener == null || subTaskListener == null) {
             return
-        }
-        val tasks = realmTasks.toMutableList()
-        if (selectedProject != null){
-            tasks.forEach{it.project = selectedProject}
         }
         val adapter: TasksAdapter
         if (recyclerView.adapter == null) {
-            adapter = TasksAdapter(tasks, taskListener, subTaskListener)
+            adapter = TasksAdapter(tasks, selectedProject, taskListener, subTaskListener)
             recyclerView.adapter = adapter
             recyclerView.layoutManager = LinearLayoutManager(recyclerView.context, RecyclerView.VERTICAL, false)
             val callback = ItemSwipeColorHelper(adapter
-                    //,dragFlag = ItemTouchHelper.UP or ItemTouchHelper.DOWN
+                    ,dragFlag = ItemTouchHelper.UP or ItemTouchHelper.DOWN
             )
             val touchHelper = ItemTouchHelper(callback)
             touchHelper.attachToRecyclerView(recyclerView)
         } else {
             adapter = recyclerView.adapter as TasksAdapter
-            adapter.update(tasks)
+            adapter.updateProject(selectedProject)
+            adapter.updateTasks(tasks)
         }
     }
 

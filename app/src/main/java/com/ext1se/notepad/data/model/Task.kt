@@ -22,6 +22,7 @@ open class Task : RealmObject(), Serializable {
     var isRemoved: Boolean = false
     var subTasks: RealmList<SubTask> = RealmList<SubTask>()
 
+    //Чтобы использовать, нужно переводит в Коллекцию, в RealmResults для этого поля SET не работает
     @Ignore
     var project: Project? = null
 }
