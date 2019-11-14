@@ -19,9 +19,17 @@ class TasksAdapter(
 ) : RecyclerView.Adapter<TaskViewHolder>(),
     ItemSwipeHelper.OnItemHelperAdapter {
 
+    private val viewPool : RecyclerView.RecycledViewPool
+
+    init {
+        viewPool = RecyclerView.RecycledViewPool()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_task, parent, false)
-        return TaskViewHolder(view)
+        val holder = TaskViewHolder(view)
+        holder.setRecycledViewPool(viewPool)
+        return holder
     }
 
     override fun getItemCount(): Int = tasks.size

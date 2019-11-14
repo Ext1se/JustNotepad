@@ -91,6 +91,7 @@ object CustomBinding {
             adapter = recyclerView.adapter as TasksAdapter
             adapter.updateProject(selectedProject)
             adapter.updateTasks(tasks)
+            recyclerView.scrollToPosition(0)
         }
     }
 
