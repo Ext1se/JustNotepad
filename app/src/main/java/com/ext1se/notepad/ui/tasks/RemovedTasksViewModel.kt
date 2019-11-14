@@ -13,7 +13,7 @@ class RemovedTasksViewModel(
     var taskListener: TaskListener
 ) : ViewModel() {
 
-    val tasks: MutableLiveData<List<Task>> = MutableLiveData()
+    val tasks: MutableLiveData<MutableList<Task>> = MutableLiveData()
 
     init {
         val removedTasks = taskRepository.getRemovedTasks().toMutableList()

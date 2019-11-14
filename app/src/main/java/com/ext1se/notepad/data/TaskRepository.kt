@@ -134,4 +134,15 @@ class TaskRepository(realm: Realm) : BaseRepository<Task>(realm, Task::class.jav
         }
         realm.commitTransaction()
     }
+
+    fun cleanRemovedTasks(): Boolean {
+        var isRemoved = false
+        with(realm) {
+            beginTransaction()
+            isRemoved = realm.where(Task::class.java).equalTo("isRemoved", true).findAll()
+                .deleteAllFromRealm()
+            commitTransaction()
+        }
+        return isRemoved
+    }
 }

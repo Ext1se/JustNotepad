@@ -54,5 +54,5 @@
     <string name="bucket">Trash</string>
     <string name="completion">Completion</string>
     <string name="new_task">New task</string>
-    <string name="delete_all">Clean trach</string>
+    <string name="delete_all">Clean the trash</string>
 </resources>

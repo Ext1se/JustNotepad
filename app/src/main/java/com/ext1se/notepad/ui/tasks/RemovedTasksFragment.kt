@@ -2,10 +2,13 @@ package com.ext1se.notepad.ui.tasks
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ItemTouchHelper
+import com.ext1se.notepad.R
 import com.ext1se.notepad.common.BaseFragment
+import com.ext1se.notepad.common.BaseFragmentOptionsMenu
 import com.ext1se.notepad.common.TaskListener
 import com.ext1se.notepad.data.TaskRepository
 import com.ext1se.notepad.data.model.Task
@@ -16,7 +19,7 @@ import com.ext1se.notepad.ui.ThemeState
 import toothpick.Toothpick
 import javax.inject.Inject
 
-class RemovedTasksFragment : BaseFragment(), TaskListener {
+class RemovedTasksFragment : BaseFragmentOptionsMenu(), TaskListener {
 
     @Inject
     lateinit var taskRepository: TaskRepository
@@ -64,6 +67,18 @@ class RemovedTasksFragment : BaseFragment(), TaskListener {
             taskRepository.restoreTask(task)
             return
         }
+    }
+
+    override fun getMenuResource(): Int = R.menu.menu_bucket
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_delete_all) {
+            if (taskRepository.cleanRemovedTasks()) {
+                removedTasksViewModel.tasks.value?.clear()
+                binding.rvRemovedTasks.adapter?.notifyDataSetChanged()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun inject() {

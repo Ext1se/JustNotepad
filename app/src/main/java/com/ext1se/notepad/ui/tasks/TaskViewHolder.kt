@@ -89,11 +89,11 @@ class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         rvSubTasks.adapter = adapter
 
 
- /*       description.visibility = View.VISIBLE
+        description.visibility = View.VISIBLE
         description.text = "position = " + task.position
         if (!task.description.isNullOrBlank()){
             description.text = description.text.toString() + "\n" + task.description
-        }*/
+        }
     }
 
     private fun setCheckBox(isCompleted: Boolean) {
