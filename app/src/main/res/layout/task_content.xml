@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:showIn="@layout/item_task_list">
+
+    <LinearLayout
+            android:id="@+id/ll_task"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/item_content_padding"
+            android:paddingEnd="@dimen/item_content_padding"
+            app:layout_constraintEnd_toStartOf="@+id/checkbox_completed"
+            app:layout_constraintBottom_toTopOf="@+id/rv_subtasks"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_width="match_parent"
+            >
+
+        <TextView
+                android:id="@+id/tv_title"
+                style="@style/BaseTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                tools:text="Name of task" />
+
+        <TextView
+                android:id="@+id/tv_description"
+                style="@style/BaseTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Description of task. Description of task. Description of task." />
+    </LinearLayout>
+</merge>

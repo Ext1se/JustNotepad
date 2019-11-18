@@ -1,5 +1,6 @@
 package com.ext1se.notepad.ui.tasks
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -24,6 +25,8 @@ class InlineSubTasksAdapter(
 
     override fun getItemCount(): Int = subTasks.size
 
-    override fun onBindViewHolder(holder: InlineSubTaskViewHolder, position: Int) =
+    override fun onBindViewHolder(holder: InlineSubTaskViewHolder, position: Int) {
+        Log.d("MyLog", "Adapter: " + position)
         holder.bind(task, subTasks[position], taskListener, subTaskListener)
+    }
 }

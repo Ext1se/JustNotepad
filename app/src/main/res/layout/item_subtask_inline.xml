@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -12,33 +12,36 @@
         android:paddingStart="@dimen/item_content_padding"
         android:paddingEnd="@dimen/item_content_padding">
 
-    <LinearLayout
+    <TextView
+            android:id="@+id/tv_subtask"
+            style="@style/BaseTextStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_marginEnd="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/checkbox_completed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="It is a subtask!" />
 
-        <TextView
-                android:id="@+id/tv_subtask"
-                style="@style/BaseTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="4dp"
-                tools:text="It is a subtask!" />
-
-        <View
-                android:layout_width="match_parent"
-                android:layout_height="0.4dp"
-                android:layout_marginTop="4dp"
-                android:background="@color/colorDefault" />
-
-    </LinearLayout>
+    <View
+            android:id="@+id/line"
+            android:layout_width="0dp"
+            android:layout_height="0.4dp"
+            android:background="@color/colorDefault"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/checkbox_completed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_subtask" />
 
 
     <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/checkbox_completed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:buttonTint="@color/colorDisabled" />
+            app:buttonTint="@color/colorDisabled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

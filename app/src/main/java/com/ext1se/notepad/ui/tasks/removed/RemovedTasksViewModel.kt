@@ -1,4 +1,4 @@
-package com.ext1se.notepad.ui.tasks
+package com.ext1se.notepad.ui.tasks.removed
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

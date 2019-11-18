@@ -17,9 +17,9 @@ import com.ext1se.notepad.data.model.Task
 import com.ext1se.notepad.ui.projects.ProjectAdapter
 import com.ext1se.notepad.ui.projects.favorite.FavoriteProjectsAdapter
 import com.ext1se.notepad.ui.projects.manage.ManagerProjectsAdapter
-import com.ext1se.notepad.ui.tasks.RemovedTasksAdapter
+import com.ext1se.notepad.ui.tasks.removed.RemovedTasksAdapter
 import com.ext1se.notepad.ui.tasks.SubTasksAdapter
-import com.ext1se.notepad.ui.tasks.TasksAdapter
+import com.ext1se.notepad.ui.tasks.TasksAdapterMultiply
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 object CustomBinding {
@@ -66,29 +66,39 @@ object CustomBinding {
      * @param taskListener is callback for click item's
      */
     @JvmStatic
-    @BindingAdapter("bind:tasks", "bind:selectedProject", "bind:taskListener", "bind:subTaskListener")
+    @BindingAdapter(
+        "bind:tasks",
+        "bind:selectedProject",
+        "bind:taskListener",
+        "bind:subTaskListener"
+    )
     fun configureTasksRecyclerView(
         recyclerView: RecyclerView,
         tasks: MutableList<Task>?,
         selectedProject: Project?,
         taskListener: TaskListener?,
         subTaskListener: SubTaskListener?
-        ) {
+    ) {
         if (tasks == null || taskListener == null || subTaskListener == null) {
             return
         }
-        val adapter: TasksAdapter
+        //val adapter: TasksAdapter
+        recyclerView.setItemViewCacheSize(20)
+        val adapter: TasksAdapterMultiply
         if (recyclerView.adapter == null) {
-            adapter = TasksAdapter(tasks, selectedProject, taskListener, subTaskListener)
+            adapter = TasksAdapterMultiply(tasks, selectedProject, taskListener, subTaskListener)
             recyclerView.adapter = adapter
-            recyclerView.layoutManager = LinearLayoutManager(recyclerView.context, RecyclerView.VERTICAL, false)
-            val callback = ItemSwipeColorHelper(adapter
-                    ,dragFlag = ItemTouchHelper.UP or ItemTouchHelper.DOWN
+            //val layoutManager = LinearLayoutManager(recyclerView.context, RecyclerView.VERTICAL, false)
+            val layoutManager = ExtraLinearLayoutManager(recyclerView.context, RecyclerView.VERTICAL, false)
+            recyclerView.layoutManager = layoutManager
+            val callback = ItemSwipeColorHelper(
+                adapter
+                , dragFlag = ItemTouchHelper.UP or ItemTouchHelper.DOWN
             )
             val touchHelper = ItemTouchHelper(callback)
             touchHelper.attachToRecyclerView(recyclerView)
         } else {
-            adapter = recyclerView.adapter as TasksAdapter
+            adapter = recyclerView.adapter as TasksAdapterMultiply
             adapter.updateProject(selectedProject)
             adapter.updateTasks(tasks)
             recyclerView.scrollToPosition(0)
@@ -151,7 +161,8 @@ object CustomBinding {
         if (tasks == null || listener == null) {
             return
         }
-        val adapter: RemovedTasksAdapter = RemovedTasksAdapter(tasks, listener)
+        val adapter: RemovedTasksAdapter =
+            RemovedTasksAdapter(tasks, listener)
         recyclerView.adapter = adapter
         recyclerView.layoutManager =
             LinearLayoutManager(recyclerView.context, RecyclerView.VERTICAL, false)

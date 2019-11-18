@@ -1,4 +1,4 @@
-package com.ext1se.notepad.ui.tasks
+package com.ext1se.notepad.ui.tasks.removed
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.ext1se.notepad.R
-import com.ext1se.notepad.common.BaseFragment
 import com.ext1se.notepad.common.BaseFragmentOptionsMenu
 import com.ext1se.notepad.common.TaskListener
 import com.ext1se.notepad.data.TaskRepository

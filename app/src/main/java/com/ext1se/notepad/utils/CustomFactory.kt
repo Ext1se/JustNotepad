@@ -9,16 +9,11 @@ import com.ext1se.notepad.data.ProjectRepository
 import com.ext1se.notepad.data.TaskRepository
 import com.ext1se.notepad.preferences.SharedPreferencesHelper
 import com.ext1se.notepad.ui.ProjectsViewModel
-import com.ext1se.notepad.ui.projects.ProjectAdapter
 import com.ext1se.notepad.ui.projects.ProjectViewModel
-import com.ext1se.notepad.ui.projects.favorite.FavoriteProjectsAdapter
 import com.ext1se.notepad.ui.projects.favorite.FavoriteProjectsViewModel
-import com.ext1se.notepad.ui.projects.manage.ManagerProjectsAdapter
 import com.ext1se.notepad.ui.projects.manage.ManagerProjectsViewModel
-import com.ext1se.notepad.ui.tasks.RemovedTasksAdapter
-import com.ext1se.notepad.ui.tasks.RemovedTasksViewModel
+import com.ext1se.notepad.ui.tasks.removed.RemovedTasksViewModel
 import com.ext1se.notepad.ui.tasks.TaskViewModel
-import com.ext1se.notepad.ui.tasks.TasksAdapter
 import org.jetbrains.annotations.NotNull
 
 class CustomFactory() : ViewModelProvider.NewInstanceFactory() {

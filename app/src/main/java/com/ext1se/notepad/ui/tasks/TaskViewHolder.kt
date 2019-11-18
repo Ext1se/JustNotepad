@@ -82,7 +82,7 @@ class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                  description.text = description.text.toString() + "\n" + task.description
              }
      */
-        val useRecyclerView = false
+        val useRecyclerView = true
 
         if (useRecyclerView) {
             tvSubTasks.visibility = View.GONE

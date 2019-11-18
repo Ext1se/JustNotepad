@@ -6,7 +6,7 @@
     <data class="RemovedTasksBinding">
         <variable
                 name="vm"
-                type="com.ext1se.notepad.ui.tasks.RemovedTasksViewModel"/>
+                type="com.ext1se.notepad.ui.tasks.removed.RemovedTasksViewModel"/>
 
     </data>
 

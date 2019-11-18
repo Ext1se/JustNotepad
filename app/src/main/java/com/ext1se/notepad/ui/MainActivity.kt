@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
@@ -26,13 +25,12 @@ import com.ext1se.notepad.databinding.DrawerHeaderBinding
 import com.ext1se.notepad.databinding.ProjectsBinding
 import com.ext1se.notepad.di.DI
 import com.ext1se.notepad.di.PREFERENCES_HELPER
-import com.ext1se.notepad.di.models.AppModule
 import com.ext1se.notepad.di.models.ProjectsModule
 import com.ext1se.notepad.preferences.SharedPreferencesHelper
 import com.ext1se.notepad.ui.projects.ProjectFragment
 import com.ext1se.notepad.ui.projects.favorite.FavoriteProjectsFragment
 import com.ext1se.notepad.ui.projects.manage.ManagerProjectsFragment
-import com.ext1se.notepad.ui.tasks.RemovedTasksFragment
+import com.ext1se.notepad.ui.tasks.removed.RemovedTasksFragment
 import com.ext1se.notepad.utils.CustomFactory
 import com.ext1se.notepad.utils.DatabaseUtils
 import com.google.android.material.navigation.NavigationView

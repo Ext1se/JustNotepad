@@ -11,7 +11,7 @@ import com.ext1se.notepad.ui.ProjectsViewModel
 import com.ext1se.notepad.ui.projects.ProjectViewModel
 import com.ext1se.notepad.ui.projects.favorite.FavoriteProjectsViewModel
 import com.ext1se.notepad.ui.projects.manage.ManagerProjectsViewModel
-import com.ext1se.notepad.ui.tasks.RemovedTasksViewModel
+import com.ext1se.notepad.ui.tasks.removed.RemovedTasksViewModel
 import com.ext1se.notepad.ui.tasks.TaskViewModel
 import org.jetbrains.annotations.NotNull
 
