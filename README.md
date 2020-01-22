@@ -4,6 +4,10 @@ The simple Notepad Application.
 
 The application is available on [Google Play](https://play.google.com/store/apps/details?id=com.ext1se.notepad).
 
+![alt text][logo]
+
+[logo]: https://lh3.googleusercontent.com/r9gV7NGJKAgc-I4NbjVni7uKg8R4TnYm3dpm8fOT9TIIzfriEaa1Uf6Lq0D1RaGqyA=s164-rw "JustNotepad"
+
 #### Libraries & Dependencies
 * Kotlin
 * MVVM 
